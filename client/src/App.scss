@@ -1,0 +1,195 @@
+
+@font-face {
+  font-family: "LMS Star Spangled";
+  src: url(./fonts/LMS_Star_Spangled.ttf) format("truetype");
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  font-family: raleway;
+  color: #000033;
+}
+
+a {
+  color: #000033;
+  text-decoration: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.red {
+  color: #de0421;
+}
+
+header {
+  text-align: center;
+}
+
+#title {
+  max-width: 400px;
+  font-family: "LMS Star Spangled";
+  color: #de0421;
+  font-size: 1.5em;
+  line-height: 50px;
+  margin: 20px auto;
+}
+
+header nav {
+  height: 40px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+input {
+  display: block;
+  width: 250px;
+  height: 40px;
+  margin: 5px auto;
+  padding-left: 10px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  -webkit-appearance: none;
+  border: none;
+  background-color: lightgray;
+  margin-bottom: 15px;
+}
+
+input.submit-button {
+  background-color: #000033;
+  color: white;
+  text-transform: uppercase;
+  padding: 0;
+}
+
+.form {
+  text-align: center;
+}
+
+.form form {
+  margin-top: 30px;
+}
+
+.challenger {
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 90%;
+  height: 100px;
+  max-width: 500px;
+  box-sizing: border-box;
+  margin: 5px auto;
+  display: flex;
+}
+
+.challenger h3 {
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+
+.challenger p {
+  margin-top: 10px;
+  font-size: .9em;
+}
+
+.pres-image {
+  display: inline-block;
+  width: 25%;
+  max-width: 90px;
+}
+
+.pres-image img {
+  width: 100%;
+  height: 100%;
+}
+
+.pres-info {
+  display: inline-block;
+  width: 50%;
+  box-sizing: border-box;
+  padding-left: 10px;
+  flex-grow: 2;
+}
+
+.pres-defeat, .undo-pres-defeat {
+  width: 70px;
+  text-align: center;
+  flex-grow: 1;
+  cursor: pointer;
+}
+
+.pres-defeat p, .undo-pres-defeat p {
+  font-weight: bold;
+  line-height: 98px;
+  margin: 0;
+  color: white;
+}
+
+.pres-defeat p {
+  background-color: #de0421;
+}
+
+.undo-pres-defeat p {
+  background-color: lightgray;
+}
+
+#challenge-tab-section {
+  display: flex;
+  margin: 0 auto;
+  width: 90%;
+  max-width: 500px;
+}
+
+.challenge-tab {
+  display: flex;
+  flex-grow: 1;
+  width: 90%;
+  text-align: center;
+  cursor: pointer;
+}
+
+.challenge-tab p {
+  flex-grow: 1;
+}
+
+#challengers-view {
+  background-color: lightblue;
+}
+
+#victories-view {
+
+}
+
+#user-show {
+  width: 90%;
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+#team-show {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  max-width: 500px;
+}
+
+#team-show-teamname {
+  text-align: center;
+}
+
+#team-member-list {
+  flex-grow: 1;
+}
+
+#team-member-scores {
+  flex-grow: 1;
+}
