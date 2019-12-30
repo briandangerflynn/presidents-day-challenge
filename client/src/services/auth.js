@@ -8,5 +8,4 @@ export const register = (userInfo) => {
 export const login = (userInfo) => {
   const resp = api.post('/user_token', {auth: userInfo});
   return verifyToken(resp.data.token);
-
 }

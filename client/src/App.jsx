@@ -1,20 +1,16 @@
 import React from 'react';
 import './App.scss';
 import Header from './components/Header';
+import { Route } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Header
-          currentUser={{
-            id: 1,
-            username: 'david',
-          }}
-        />
-        <h1 id="title">President's Day Challenge</h1>
-      </header>
-    </div>
+    <>
+      <Header />
+      <Route path="/" render={() => (
+        <div>Yo Yo Yo!</div>
+      )} />
+    </>
   );
 }
 
