@@ -5,7 +5,6 @@ class CreateTeams < ActiveRecord::Migration[5.2]
     create_table :teams do |t|
       t.string :teamname
       t.references :creator
-      t.boolean :defeated
 
       t.timestamps
     end

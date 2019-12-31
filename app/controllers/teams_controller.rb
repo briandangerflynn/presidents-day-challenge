@@ -1,16 +1,9 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: [:show, :update, :destroy]
 
-  # GET /teams
-  def index
-    @teams = Team.all
-
-    render json: @teams
-  end
-
   # GET /teams/1
   def show
-    render json: @team
+    render json: @team, include: {users: :users, team_presidents: {include:[:user,:president]}}
   end
 
   # POST /teams
@@ -18,6 +11,9 @@ class TeamsController < ApplicationController
     @team = Team.new(team_params)
 
     if @team.save
+      President.all.each do |pres|
+        @team.team_presidents.create!(president: pres)
+      end
       render json: @team, status: :created, location: @team
     else
       render json: @team.errors, status: :unprocessable_entity

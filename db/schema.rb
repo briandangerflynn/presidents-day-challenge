@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_19_151705) do
+ActiveRecord::Schema.define(version: 2019_12_30_215537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,28 +28,28 @@ ActiveRecord::Schema.define(version: 2019_07_19_151705) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "presidents_team_members", id: false, force: :cascade do |t|
-    t.bigint "team_member_id", null: false
-    t.bigint "president_id", null: false
-  end
-
-  create_table "team_members", force: :cascade do |t|
-    t.bigint "user_id"
+  create_table "team_presidents", force: :cascade do |t|
     t.bigint "team_id"
-    t.integer "score"
+    t.bigint "president_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["team_id"], name: "index_team_members_on_team_id"
-    t.index ["user_id"], name: "index_team_members_on_user_id"
+    t.index ["president_id"], name: "index_team_presidents_on_president_id"
+    t.index ["team_id"], name: "index_team_presidents_on_team_id"
+    t.index ["user_id"], name: "index_team_presidents_on_user_id"
   end
 
   create_table "teams", force: :cascade do |t|
     t.string "teamname"
     t.bigint "creator_id"
-    t.boolean "defeated"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["creator_id"], name: "index_teams_on_creator_id"
+  end
+
+  create_table "teams_users", id: false, force: :cascade do |t|
+    t.bigint "team_id", null: false
+    t.bigint "user_id", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 2019_07_19_151705) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "team_members", "teams"
-  add_foreign_key "team_members", "users"
+  add_foreign_key "team_presidents", "presidents"
+  add_foreign_key "team_presidents", "teams"
+  add_foreign_key "team_presidents", "users"
 end

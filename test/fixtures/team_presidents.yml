@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  team: one
+  president: one
+  user: one
+
+two:
+  team: two
+  president: two
+  user: two
