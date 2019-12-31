@@ -2,7 +2,7 @@
 
 class User < ApplicationRecord
   has_secure_password
-  has_many :team_members
+  has_and_belongs_to_many :teams
   has_many :owned_teams, class_name: 'Team', foreign_key: 'creator_id'
 
   validates :email, presence: true
