@@ -15,7 +15,7 @@ function App() {
       <Route path="/register" render={() => (
         <Signup />
       )} />
-      <Route path="/" render={() => (
+      <Route exact path="/" render={() => (
         <div>Yo Yo Yo!</div>
       )} />
     </>

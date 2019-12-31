@@ -1,14 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function Signup() {
-  return (
-    <div className="form">
-      <h2>Sign In</h2>
-      <p><small>New here? <Link to="/register">Create an account</Link></small></p>
-      <input />
-      <input />
-      <input />
-    </div>
-  )
+export default class Signup extends React.Component {
+  state = {
+    
+  }
+  render() {
+    return (
+      <div className="form">
+        <h2>Create Account</h2>
+        <p><small>Got an account? <Link to="/login" className="underline red">Sign In</Link></small></p>
+        <form>
+          <input placeholder="Name" />
+          <input placeholder="Password (must be 5 characters)" />
+          <input placeholder="Confirm Password" />
+          <input type="submit" className="submit-button" value="Create" />
+        </form>
+      </div>
+    )
+  }
 }
