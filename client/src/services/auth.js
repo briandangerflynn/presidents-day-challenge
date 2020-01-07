@@ -5,11 +5,11 @@ const storeToken = (token) => {
   api.defaults.headers.common.authorization = `Bearer ${token}`;
 };
 
-const verifyToken = async () => {
+export const verifyToken = async () => {
   const token = localStorage.getItem('jwt');
   if (token !== null) {
     try {
-      const resp = api.get('/users/verify', {
+      const resp = await api.get('/users/verify', {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -23,12 +23,20 @@ const verifyToken = async () => {
   }
 }
 
-export const register = (userInfo) => {
-  const resp = api.post('/users/', { user: userInfo });
-  return resp.data;
+export const register = async (userInfo) => {
+  const resp = await api.post('/users/', { user: userInfo });
+  debugger;
+  storeToken(resp.data.token);
+  return resp.data.user;
 }
 
-export const login = (userInfo) => {
-  const resp = api.post('/user_token', { auth: userInfo });
-  return verifyToken(resp.data.token);
+export const login = async (userInfo) => {
+  const resp = await api.post('/user_token', { auth: userInfo });
+  debugger;
+  storeToken(resp.data.token);
+  return resp.data.user;
+}
+
+export const removeToken = () => {
+  api.defaults.headers.common.authorization = null;
 }
