@@ -27,14 +27,16 @@ export const register = async (userInfo) => {
   const resp = await api.post('/users/', { user: userInfo });
   debugger;
   storeToken(resp.data.token);
-  return resp.data.user;
+  const {token, ...userTeams} = resp.data
+  return userTeams;
 }
 
 export const login = async (userInfo) => {
   const resp = await api.post('/user_token', { auth: userInfo });
   debugger;
   storeToken(resp.data.token);
-  return resp.data.user;
+  const {token, ...userTeams} = resp.data
+  return userTeams;
 }
 
 export const removeToken = () => {

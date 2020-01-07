@@ -11,6 +11,7 @@ import { api } from './services/api-helper';
 class App extends React.Component {
   state = {
     currentUser: null,
+    teams: [],
     teamPresidents: [],
     challengers: [],
     victories: [],
@@ -70,19 +71,28 @@ class App extends React.Component {
   // ================================
 
   handleLogin = async (loginData) => {
-    const currentUser = await login(loginData);
-    this.setState({ currentUser });
+    const { user, teams } = await login(loginData);
+    this.setState({
+      currentUser: user,
+      teams
+    });
   }
 
   handleRegister = async (registerData) => {
-    const currentUser = await register(registerData);
-    this.setState({ currentUser });
+    const { user, teams } = await register(registerData);
+    this.setState({
+      currentUser: user,
+      teams
+    });
   }
 
   verifyUser = async () => {
-    const currentUser = await verifyToken();
-    if (currentUser) {
-      this.setState({ currentUser })
+    const { user, teams } = await verifyToken();
+    if (user) {
+      this.setState({
+        currentUser: user,
+        teams
+      });
     }
   }
 
