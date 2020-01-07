@@ -14,9 +14,7 @@ class App extends React.Component {
     teamPresidents: [],
     challengers: [],
     victories: [],
-    challengeView: "challengers",
-    user_id: 1,
-    team_id: 1
+    challengeView: "challengers"
   }
 
   async componentDidMount() {
@@ -34,11 +32,14 @@ class App extends React.Component {
         victories.push(tp.president)
       }
     })
+
+
     this.setState({
       teamPresidents,
       challengers,
       victories
     })
+
     this.verifyUser();
   }
 
@@ -54,13 +55,15 @@ class App extends React.Component {
       })
     }
   }
+
   handleDefeat = async (id) => {
-    const response = await api.put(`/teams/1/presidents/${id}/defeat`, { user_id: 1, team_id: 1, president_id: id })
+    const response = await api.put(`/teams/1/presidents/${id}/defeat`, { user: this.state.currentUser, team_id: 1, president_id: id })
     this.componentDidMount()
     console.log(response)
   }
+
   handleRevive = async (id) => {
-    const response = await api.put(`/teams/1/presidents/${id}/revive`, { user_id: 1, team_id: 1, president_id: id })
+    const response = await api.put(`/teams/1/presidents/${id}/revive`, { user: this.state.currentUser, team_id: 1, president_id: id })
     console.log(response)
     this.componentDidMount()
   }
@@ -99,12 +102,16 @@ class App extends React.Component {
   // ================================
 
   render() {
+
     const {
+      currentUser,
       teamPresidents,
       challengers,
       victories,
       challengeView
     } = this.state;
+
+    console.log(currentUser)
     return (
       <>
         <Header

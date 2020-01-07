@@ -8,12 +8,15 @@ export default function ChallengeMain(props) {
     handleDefeat,
     handleRevive
   } = props
+
   let presidents = []
+
   if (challengeView === "challengers") {
     presidents = challengers
   } else {
     presidents = victories
   }
+
   return (
     <div className="challenge-main">
       <div id="challenge-tab-section">
