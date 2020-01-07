@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     if @user.save!
       @user = User.select(:id, :username, :email, :created_at, :updated_at).find @user.id
       @token = Knock::AuthToken.new payload: { sub: @user.id }
-      @teams = @user.teams
+      @teams = @user.teams.order(created_at: :desc)
 
       render json: {user: @user, token: @token.token, teams: @teams }, status: :created
     else
@@ -50,7 +50,7 @@ class UsersController < ApplicationController
     payload = jwtDecode header
     @user = User.from_token_payload payload
 
-    render json: { user: @user, teams: @user.teams }
+    render json: { user: @user, teams: @user.teams.order(created_at: :desc) }
   end
 
   private

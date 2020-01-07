@@ -3,7 +3,7 @@ class TeamsController < ApplicationController
 
   # GET /teams/1
   def show
-    render json: @team, include: {users: :users, team_presidents: {include:[:user,:president]}}
+    render json: @team, include: [:users, { team_presidents: { include: [ :user, :president ] } }]
   end
 
   # POST /teams

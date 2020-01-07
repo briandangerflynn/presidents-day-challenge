@@ -5,7 +5,7 @@ class UserTokenController < Knock::AuthTokenController
 
   def create
     @user = User.select(:id, :username, :email, :created_at, :updated_at).find entity.id
-    @teams = @user.teams
+    @teams = @user.teams.order(created_at: :desc)
 
     render json: {user: @user, token: auth_token.token, teams: @teams }, status: :created
   end

@@ -74,7 +74,8 @@ class App extends React.Component {
     const { user, teams } = await login(loginData);
     this.setState({
       currentUser: user,
-      teams
+      teams,
+      currentTeam: teams[0]
     });
   }
 
@@ -82,16 +83,19 @@ class App extends React.Component {
     const { user, teams } = await register(registerData);
     this.setState({
       currentUser: user,
-      teams
+      teams,
+      currentTeam: teams[0]
     });
   }
 
   verifyUser = async () => {
-    const { user, teams } = await verifyToken();
-    if (user) {
+    const response = await verifyToken();
+    if (response) {
+      const { user, teams } = response;
       this.setState({
         currentUser: user,
-        teams
+        teams,
+        currentTeam: teams[0]
       });
     }
   }
@@ -100,7 +104,9 @@ class App extends React.Component {
     removeToken();
     localStorage.removeItem("jwt");
     this.setState({
-      currentUser: null
+      currentUser: null,
+      teams: [],
+      currentTeam: null
     })
   }
 
