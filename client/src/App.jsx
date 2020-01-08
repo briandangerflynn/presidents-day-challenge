@@ -11,19 +11,23 @@ import { api } from './services/api-helper';
 class App extends React.Component {
   state = {
     currentUser: null,
+    currentTeam: null,
     teams: [],
     teamPresidents: [],
     challengers: [],
     victories: [],
-    challengeView: "challengers",
-    user_id: 1,
-    team_id: 1
+    challengeView: "challengers"
   }
 
   async componentDidMount() {
+    this.getTeamPresidents()
+  }
+
+  getTeamPresidents = async () => {
     const challengers = []
     const victories = []
-    const response = await api.get('/teams/1')
+    const currentTeam = await this.verifyUser()
+    const response = await api.get(`/teams/${currentTeam.id}`)
     const teamPresidents = response.data.team_presidents
     teamPresidents.sort(function (a, b) {
       return a.id - b.id;
@@ -40,7 +44,6 @@ class App extends React.Component {
       challengers,
       victories
     })
-    this.verifyUser();
   }
 
   handleViewClick = (e) => {
@@ -55,15 +58,21 @@ class App extends React.Component {
       })
     }
   }
+
   handleDefeat = async (id) => {
-    const response = await api.put(`/teams/1/presidents/${id}/defeat`, { user_id: 1, team_id: 1, president_id: id })
-    this.componentDidMount()
-    console.log(response)
+    const { currentUser, currentTeam } = this.state
+    const formData = {
+      user: currentUser,
+      team: currentTeam,
+      president_id: id
+    }
+    await api.put(`/teams/${currentTeam.id}/presidents/${id}/defeat`, formData)
+    this.getTeamPresidents()
   }
+
   handleRevive = async (id) => {
-    const response = await api.put(`/teams/1/presidents/${id}/revive`, { user_id: 1, team_id: 1, president_id: id })
-    console.log(response)
-    this.componentDidMount()
+    await api.put(`/teams/1/presidents/${id}/revive`, { user_id: 1, team_id: 1, president_id: id })
+    this.getTeamPresidents()
   }
 
   // ================================
@@ -98,6 +107,7 @@ class App extends React.Component {
         currentTeam: teams[0]
       });
     }
+    return response.teams[0]
   }
 
   handleLogout = () => {
