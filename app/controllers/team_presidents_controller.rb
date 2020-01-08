@@ -3,7 +3,8 @@ class TeamPresidentsController < ApplicationController
 
   def defeat
     @team_president = @team.team_presidents.where(president_id: params[:president_id])
-    @team_president.update(user: @current_user)
+    @current_user = params["user"]
+    @team_president.update(user_id: @current_user["id"])
     render json: @team_president
   end
   

@@ -7,6 +7,8 @@ export default function Header(props) {
       <nav>
         {props.currentUser &&
           <>
+            <Link to="/challenge">Challenge</Link>
+            <Link to="/team">Team</Link>
             <Link to={`/users/${props.currentUser.id}`}>Profile</Link>
             <Link to='/rules/'>Rules</Link>
             <Link to='/' onClick={props.handleLogout}>Logout</Link>
