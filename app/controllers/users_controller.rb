@@ -2,6 +2,7 @@
 
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show update destroy]
+  before_action :authenticate_user, only: %i[verify]
 
   # GET /users
   def index
@@ -45,12 +46,7 @@ class UsersController < ApplicationController
   end
 
   def verify
-    header = request.headers['Authorization']
-    header = header.split(' ').last if header
-    payload = jwtDecode header
-    @user = User.from_token_payload payload
-
-    render json: { user: @user, teams: @user.teams.order(created_at: :desc) }
+    render json: { user: current_user, teams: current_user.teams.order(created_at: :desc) }
   end
 
   private

@@ -4,6 +4,8 @@ import Header from './components/Header';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import ChallengeMain from './components/ChallengeMain';
+import Team from './components/Team';
+import Profile from './components/Profile';
 import { Route } from 'react-router-dom';
 import { login, register, verifyToken, removeToken } from './services/auth';
 import { api } from './services/api-helper';
@@ -12,6 +14,7 @@ class App extends React.Component {
   state = {
     currentUser: null,
     currentTeam: null,
+    currentTeamMembers: [],
     teams: [],
     teamPresidents: [],
     challengers: [],
@@ -21,6 +24,16 @@ class App extends React.Component {
 
   async componentDidMount() {
     this.getTeamPresidents()
+    this.getCurrentTeamMembers()
+  }
+
+  getCurrentTeamMembers = async () => {
+    const currentTeam = await this.verifyUser()
+    const response = await api.get(`/teams/${currentTeam.id}`)
+    const currentTeamMembers = response.data.users
+    this.setState({
+      currentTeamMembers
+    })
   }
 
   getTeamPresidents = async () => {
@@ -129,8 +142,12 @@ class App extends React.Component {
       teamPresidents,
       challengers,
       victories,
-      challengeView
+      challengeView,
+      currentTeam,
+      currentTeamMembers,
+      currentUser
     } = this.state;
+
     return (
       <>
         <Header
@@ -147,7 +164,7 @@ class App extends React.Component {
             handleRegister={this.handleRegister}
           />
         )} />
-        <Route exact path="/challenge" render={() => (
+        <Route path="/challenge" render={() => (
           <ChallengeMain
             teamPresidents={teamPresidents}
             challengers={challengers}
@@ -156,6 +173,21 @@ class App extends React.Component {
             handleViewClick={this.handleViewClick}
             handleDefeat={this.handleDefeat}
             handleRevive={this.handleRevive}
+          />
+        )} />
+
+        <Route path="/team" render={() => (
+          <Team
+            currentTeam={currentTeam}
+            currentTeamMembers={currentTeamMembers}
+            teamPresidents={teamPresidents}
+          />
+        )} />
+
+        <Route path="/users/:id" render={() => (
+          <Profile
+            currentUser={currentUser}
+            teamPresidents={teamPresidents}
           />
         )} />
       </>

@@ -16,6 +16,6 @@ class User < ApplicationRecord
   end
 
   def self.from_token_payload(payload)
-    select(:id, :username, :email, :created_at, :updated_at).find payload[:sub]
+    select(:id, :username, :email, :created_at, :updated_at).find payload["sub"]
   end
 end
