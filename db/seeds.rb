@@ -55,9 +55,11 @@ President.create!(name: "Donald Trump", presidency: "45th", years_active: "2017-
 p "#{President.count} presidents created"
 
 test_user = User.create!({email: "test@email.com", password: "12345", username: "test"})
-
+brian = User.create!({email: "bdflynny@gmail.com", password: "brian", username: "brian"})
 team = Team.new({teamname: "Test Team", creator: test_user})
 team.users << test_user
+team.users << brian
+
 
 if team.save
   President.all.each do |pres|

@@ -1,15 +1,17 @@
 class TeamPresidentsController < ApplicationController
-  before_action :set_team
+  before_action :set_team, :authenticate_user
 
   def defeat
     @team_president = @team.team_presidents.where(president_id: params[:president_id])
-    @team_president.update(user: @current_user)
+    @team_president.update(user_id: current_user.id)
+    TeamsChannel.broadcast_to @team, @team_president
     render json: @team_president
   end
   
   def revive
     @team_president = @team.team_presidents.where(president_id: params[:president_id])
     @team_president.update(user: nil)
+    TeamsChannel.broadcast_to @team, @team_president
     render json: @team_president
   end
   

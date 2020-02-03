@@ -17,7 +17,6 @@ export const verifyToken = async () => {
       storeToken(token);
       return resp.data;
     } catch (e) {
-      console.log(e);
       return false
     }
   }
@@ -26,13 +25,15 @@ export const verifyToken = async () => {
 export const register = async (userInfo) => {
   const resp = await api.post('/users/', { user: userInfo });
   storeToken(resp.data.token);
-  return resp.data.user;
+  const { token, ...userTeams } = resp.data
+  return userTeams;
 }
 
 export const login = async (userInfo) => {
   const resp = await api.post('/user_token', { auth: userInfo });
   storeToken(resp.data.token);
-  return resp.data.user;
+  const { token, ...userTeams } = resp.data
+  return userTeams;
 }
 
 export const removeToken = () => {
