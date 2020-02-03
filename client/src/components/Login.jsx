@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 
 export default class Login extends React.Component {
@@ -17,6 +17,11 @@ export default class Login extends React.Component {
 
   render() {
     const { username, password } = this.state;
+
+    if (this.props.currentUser) {
+      return <Redirect to='/challenge' />
+    }
+
     return (
       <div className="form">
         <h2>Sign In</h2>
@@ -31,7 +36,7 @@ export default class Login extends React.Component {
             name="username"
             value={username}
             onChange={this.handleChange}
-            />
+          />
           <input
             type="password"
             placeholder="Password"
