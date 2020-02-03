@@ -169,10 +169,28 @@ input.submit-button {
 
 }
 
-#user-show {
+#user-show, 
+#rules {
   width: 90%;
   margin: 0 auto;
   max-width: 500px;
+}
+
+#rules ol {
+  padding: 0;
+}
+
+#rules h2 {
+  text-align: center;
+}
+
+#rules li {
+  margin: 20px 0;
+}
+
+#rules img {
+  max-width: 100%;
+
 }
 
 #team-show {

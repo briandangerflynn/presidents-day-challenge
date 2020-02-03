@@ -1,11 +1,14 @@
 import React from 'react';
 import './App.scss';
+
 import Header from './components/Header';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import ChallengeMain from './components/ChallengeMain';
 import Team from './components/Team';
 import Profile from './components/Profile';
+import Rules from './components/Rules';
+
 import { Route } from 'react-router-dom';
 import { login, register, verifyToken, removeToken } from './services/auth';
 import { api } from './services/api-helper';
@@ -107,6 +110,7 @@ class App extends React.Component {
       currentTeam: teams[0]
     });
     this.getTeamPresidents()
+    this.getCurrentTeamMembers()
   }
 
   handleRegister = async (registerData) => {
@@ -210,6 +214,10 @@ class App extends React.Component {
             currentUser={currentUser}
             teamPresidents={teamPresidents}
           />
+        )} />
+
+        < Route path="/rules" render={() => (
+          <Rules />
         )} />
       </>
     );
