@@ -9,7 +9,7 @@ import Profile from './components/Profile';
 import { Route } from 'react-router-dom';
 import { login, register, verifyToken, removeToken } from './services/auth';
 import { api } from './services/api-helper';
-import { ActionCable } from 'react-actioncable-provider';
+import { ActionCableConsumer } from 'react-actioncable-provider';
 
 
 
@@ -163,12 +163,13 @@ class App extends React.Component {
     return (
       <>
         <Header
-          currentUser={this.state.currentUser}
+          currentUser={currentUser}
           handleLogout={this.handleLogout}
         />
         <Route exact path="/" render={() => (
           <Login
             handleLogin={this.handleLogin}
+            currentUser={currentUser}
           />
         )} />
         <Route path="/register" render={() => (
@@ -178,7 +179,7 @@ class App extends React.Component {
         )} />
 
         <Route path="/challenge" render={() => (
-          <ActionCable
+          <ActionCableConsumer
             channel={{ channel: 'TeamsChannel', team: currentTeam }}
             onReceived={this.handleReceived}
           >
@@ -191,7 +192,7 @@ class App extends React.Component {
               handleDefeat={this.handleDefeat}
               handleRevive={this.handleRevive}
             />
-          </ActionCable>
+          </ActionCableConsumer>
         )
         } />
 
