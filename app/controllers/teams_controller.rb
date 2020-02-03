@@ -6,11 +6,27 @@ class TeamsController < ApplicationController
     render json: @team, include: [:users, { team_presidents: { include: [ :user, :president ] } }]
   end
 
+  # JOIN /teams/join
+  def join
+    @team = Team.find_by(teamname: params["team"]["teamname"])
+    if @team.users.include? current_user
+      render json: {error: "You're already on this team"}
+    else
+      @team.users << current_user
+      if @team.save
+        render json: @team
+      else
+        render json: @team.errors, status: :unprocessable_entity
+      end
+    end
+  end
+
   # POST /teams
   def create
     @team = Team.new(team_params)
 
     if @team.save
+      @team.users << current_user
       President.all.each do |pres|
         @team.team_presidents.create!(president: pres)
       end

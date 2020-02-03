@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link, Redirect } from 'react-router-dom';
+import { api } from '../services/api-helper';
 
 
 export default class Login extends React.Component {
   state = {
-    username: "",
-    password: ""
+    teamname: ""
   }
 
   handleChange = (e) => {
@@ -15,41 +15,40 @@ export default class Login extends React.Component {
     })
   }
 
-  render() {
-    const { username, password } = this.state;
-
-    if (this.props.currentUser && this.props.currentTeam) {
-      return <Redirect to='/challenge' />
-    } else if (this.props.currentUser) {
-      return <Redirect to='/join-team' />
+  handleJoinTeam = async (e) => {
+    e.preventDefault();
+    const formData = {
+      teamname: this.state.teamname
     }
+    const response = await api.put('/teams/join', { team: formData })
+    console.log(response)
+  }
 
+  render() {
+    if (this.props.currentTeam) {
+      return <Redirect to='/challenge' />
+    }
     return (
       <div className="form">
-        <h2>Sign In</h2>
-        <p><small>New here? <Link to="/register" className="underline red">Create an account</Link></small></p>
-        <form onSubmit={(e) => {
-          e.preventDefault();
-          this.props.handleLogin(this.state);
-        }}>
+        <h2>Join Existing Team</h2>
+        <p><small>Want to create a new team? <Link to="/create-team" className="underline red">Click here!</Link></small></p>
+        <form onSubmit={this.handleJoinTeam}>
           <input
             type="text"
-            placeholder="Name"
-            name="username"
-            value={username}
+            placeholder="Enter Team Name"
+            name="teamname"
             onChange={this.handleChange}
           />
           <input
             type="password"
-            placeholder="Password"
+            placeholder="Password (must be 5 characters)"
             name="password"
-            value={password}
             onChange={this.handleChange}
           />
           <input
             type="submit"
             className="submit-button"
-            value="Log In"
+            value="Join"
           />
         </form>
       </div>

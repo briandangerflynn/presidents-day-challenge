@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 export default class Signup extends React.Component {
   state = {
@@ -17,6 +17,11 @@ export default class Signup extends React.Component {
   }
 
   render() {
+    if (this.props.currentUser && this.props.currentTeam) {
+      return <Redirect to='/challenge' />
+    } else if (this.props.currentUser) {
+      return <Redirect to='/join-team' />
+    }
     const { username, email, password, password_confirmation } = this.state;
     return (
       <div className="form">
@@ -32,21 +37,21 @@ export default class Signup extends React.Component {
             name="username"
             value={username}
             onChange={this.handleChange}
-            />
+          />
           <input
             type="text"
             placeholder="Email"
             name="email"
             value={email}
             onChange={this.handleChange}
-            />
+          />
           <input
             type="password"
             placeholder="Password (must be 5 characters)"
             name="password"
             value={password}
             onChange={this.handleChange}
-            />
+          />
           <input
             type="password"
             placeholder="Confirm Password"

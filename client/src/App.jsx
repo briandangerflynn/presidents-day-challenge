@@ -8,6 +8,8 @@ import ChallengeMain from './components/ChallengeMain';
 import Team from './components/Team';
 import Profile from './components/Profile';
 import Rules from './components/Rules';
+import TeamJoin from './components/TeamJoin';
+import TeamCreate from './components/TeamCreate';
 
 import { Route } from 'react-router-dom';
 import { login, register, verifyToken, removeToken } from './services/auth';
@@ -94,7 +96,13 @@ class App extends React.Component {
   }
 
   handleRevive = async (id) => {
-    await api.put(`/teams/1/presidents/${id}/revive`, { user_id: 1, team_id: 1, president_id: id })
+    const { currentUser, currentTeam } = this.state
+    const formData = {
+      user: currentUser,
+      team: currentTeam,
+      president_id: id
+    }
+    await api.put(`/teams/${currentTeam.id}/presidents/${id}/revive`, formData)
     this.getTeamPresidents()
   }
 
@@ -145,8 +153,37 @@ class App extends React.Component {
     })
   }
 
+  // ================================
+  // ===== JOIN / CREATE TEAM =======
+  // ================================
+
+  joinTeam = async (formData) => {
+    const response = await api.put('/teams/join', { team: formData })
+    const currentTeam = response.data
+    this.setState({
+      currentTeam
+    })
+
+    this.getTeamPresidents()
+    this.getCurrentTeamMembers()
+  }
+
+  createTeam = async (formData) => {
+    const response = await api.post('/teams', { team: formData })
+    const currentTeam = response.data
+    this.setState({
+      currentTeam
+    })
+
+    this.getTeamPresidents()
+    this.getCurrentTeamMembers()
+  }
+
+  // ================================
+  // ===== ACTION CABLE RESPONSE ====
+  // ================================
+
   handleReceived = async (message) => {
-    console.log(message[0])
     this.getTeamPresidents()
   }
 
@@ -175,13 +212,30 @@ class App extends React.Component {
           <Login
             handleLogin={this.handleLogin}
             currentUser={currentUser}
+            currentTeam={currentTeam}
           />
         )} />
         <Route path="/register" render={() => (
           <Signup
             handleRegister={this.handleRegister}
+            currentTeam={currentTeam}
+            currentUser={currentUser}
           />
         )} />
+
+        <Route path="/create-team" render={() => (
+          <TeamCreate
+            createTeam={this.createTeam}
+            currentTeam={currentTeam}
+            currentUser={currentUser} />
+        )} />
+
+        <Route path="/join-team" render={() => (
+          <TeamJoin
+            joinTeam={this.joinTeam}
+            currentTeam={currentTeam} />
+        )} />
+
 
         <Route path="/challenge" render={() => (
           <ActionCableConsumer

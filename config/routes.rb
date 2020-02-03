@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   
   put '/teams/:team_id/presidents/:id/defeat', to: 'team_presidents#defeat'
   put '/teams/:team_id/presidents/:id/revive', to: 'team_presidents#revive'
-  
+  put '/teams/join', to: 'teams#join'
   resources :teams
   
   mount ActionCable.server => '/cable'
