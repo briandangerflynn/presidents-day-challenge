@@ -106,6 +106,7 @@ class App extends React.Component {
       teams,
       currentTeam: teams[0]
     });
+    this.getTeamPresidents()
   }
 
   handleRegister = async (registerData) => {
