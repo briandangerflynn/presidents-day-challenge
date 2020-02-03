@@ -3,7 +3,8 @@
 class TeamsChannel < ApplicationCable::Channel
   def subscribed
     # stream_from "some_channel"
-    @team = Team.find(params[:team])
+    
+    @team = Team.find(params[:team]["id"])
     stream_for @team
   end
 

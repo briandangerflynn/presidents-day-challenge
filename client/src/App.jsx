@@ -9,6 +9,9 @@ import Profile from './components/Profile';
 import { Route } from 'react-router-dom';
 import { login, register, verifyToken, removeToken } from './services/auth';
 import { api } from './services/api-helper';
+import { ActionCable } from 'react-actioncable-provider';
+
+
 
 class App extends React.Component {
   state = {
@@ -29,34 +32,38 @@ class App extends React.Component {
 
   getCurrentTeamMembers = async () => {
     const currentTeam = await this.verifyUser()
-    const response = await api.get(`/teams/${currentTeam.id}`)
-    const currentTeamMembers = response.data.users
-    this.setState({
-      currentTeamMembers
-    })
+    if (currentTeam) {
+      const response = await api.get(`/teams/${currentTeam.id}`)
+      const currentTeamMembers = response.data.users
+      this.setState({
+        currentTeamMembers
+      })
+    }
   }
 
   getTeamPresidents = async () => {
     const challengers = []
     const victories = []
     const currentTeam = await this.verifyUser()
-    const response = await api.get(`/teams/${currentTeam.id}`)
-    const teamPresidents = response.data.team_presidents
-    teamPresidents.sort(function (a, b) {
-      return a.id - b.id;
-    });
-    teamPresidents.forEach(tp => {
-      if (!tp.user_id) {
-        challengers.push(tp.president)
-      } else {
-        victories.push(tp.president)
-      }
-    })
-    this.setState({
-      teamPresidents,
-      challengers,
-      victories
-    })
+    if (currentTeam) {
+      const response = await api.get(`/teams/${currentTeam.id}`)
+      const teamPresidents = response.data.team_presidents
+      teamPresidents.sort(function (a, b) {
+        return a.id - b.id;
+      });
+      teamPresidents.forEach(tp => {
+        if (!tp.user_id) {
+          challengers.push(tp.president)
+        } else {
+          victories.push(tp.president)
+        }
+      })
+      this.setState({
+        teamPresidents,
+        challengers,
+        victories
+      })
+    }
   }
 
   handleViewClick = (e) => {
@@ -119,8 +126,8 @@ class App extends React.Component {
         teams,
         currentTeam: teams[0]
       });
+      return response.teams[0]
     }
-    return response.teams[0]
   }
 
   handleLogout = () => {
@@ -131,6 +138,11 @@ class App extends React.Component {
       teams: [],
       currentTeam: null
     })
+  }
+
+  handleReceived = async (message) => {
+    console.log(message[0])
+    this.getTeamPresidents()
   }
 
   // ================================
@@ -164,15 +176,37 @@ class App extends React.Component {
             handleRegister={this.handleRegister}
           />
         )} />
+
         <Route path="/challenge" render={() => (
-          <ChallengeMain
+          <ActionCable
+            channel={{ channel: 'TeamsChannel', team: currentTeam }}
+            onReceived={this.handleReceived}
+          >
+            <ChallengeMain
+              teamPresidents={teamPresidents}
+              challengers={challengers}
+              victories={victories}
+              challengeView={challengeView}
+              handleViewClick={this.handleViewClick}
+              handleDefeat={this.handleDefeat}
+              handleRevive={this.handleRevive}
+            />
+          </ActionCable>
+        )
+        } />
+
+        < Route path="/team" render={() => (
+          <Team
+            currentTeam={currentTeam}
+            currentTeamMembers={currentTeamMembers}
             teamPresidents={teamPresidents}
-            challengers={challengers}
-            victories={victories}
-            challengeView={challengeView}
-            handleViewClick={this.handleViewClick}
-            handleDefeat={this.handleDefeat}
-            handleRevive={this.handleRevive}
+          />
+        )} />
+
+        < Route path="/users/:id" render={() => (
+          <Profile
+            currentUser={currentUser}
+            teamPresidents={teamPresidents}
           />
         )} />
 
