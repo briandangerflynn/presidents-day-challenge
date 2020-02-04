@@ -14,6 +14,8 @@ export default function Profile(props) {
           teamPresidents.map(president => {
             if (president.user_id === currentUser.id) {
               return <p key={president.president_id}>{president.president.name}</p>
+            } else {
+              return null
             }
           })
         }

@@ -77,10 +77,13 @@ class App extends React.Component {
       this.setState({
         challengeView: "challengers"
       })
+
+      console.log(this.state.challengeView)
     } else {
       this.setState({
         challengeView: "victories"
       })
+      console.log(this.state.challengeView)
     }
   }
 
@@ -184,6 +187,7 @@ class App extends React.Component {
   // ================================
 
   handleReceived = async (message) => {
+    console.log(message[0])
     this.getTeamPresidents()
   }
 

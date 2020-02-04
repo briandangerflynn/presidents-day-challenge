@@ -1,5 +1,6 @@
 import React from 'react';
 export default function ChallengeMain(props) {
+
   const {
     challengers,
     victories,
@@ -9,23 +10,40 @@ export default function ChallengeMain(props) {
     handleRevive
   } = props
   let presidents = []
+
+  // LOL this terrible code sets the "current view" class. it works, but we should refactor in the future. 
+  let view;
   if (challengeView === "challengers") {
     presidents = challengers
+    view = <div id="challenge-tab-section">
+      <div id="challengers-view" className="challenge-tab current-view" onClick={handleViewClick} >
+        <p>Challengers</p>
+        <p>{challengers.length}</p>
+      </div>
+      <div id="victories-view" className="challenge-tab" onClick={handleViewClick}>
+        <p>Victories</p>
+        <p>{victories.length}</p>
+      </div>
+    </div>
   } else {
     presidents = victories
+    view = <div id="challenge-tab-section">
+      <div id="challengers-view" className="challenge-tab" onClick={handleViewClick} >
+        <p>Challengers</p>
+        <p>{challengers.length}</p>
+      </div>
+      <div id="victories-view" className="challenge-tab current-view" onClick={handleViewClick}>
+        <p>Victories</p>
+        <p>{victories.length}</p>
+      </div>
+    </div>
   }
+  // end of garbage code
+
   return (
     <div className="challenge-main">
-      <div id="challenge-tab-section">
-        <div id="challengers-view" className="challenge-tab current-view" onClick={handleViewClick} >
-          <p>Challengers</p>
-          <p>{challengers.length}</p>
-        </div>
-        <div id="victories-view" className="challenge-tab" onClick={handleViewClick}>
-          <p>Victories</p>
-          <p>{victories.length}</p>
-        </div>
-      </div>
+      {/* garbage code implemented here */}
+      {view}
       <div id="challengers-list">
         {
           presidents.map(president => (
