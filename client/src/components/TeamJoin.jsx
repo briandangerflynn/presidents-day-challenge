@@ -20,8 +20,7 @@ export default class Login extends React.Component {
     const formData = {
       teamname: this.state.teamname
     }
-    const response = await api.put('/teams/join', { team: formData })
-    console.log(response)
+    this.props.joinTeam(formData)
   }
 
   render() {
@@ -43,6 +42,7 @@ export default class Login extends React.Component {
             type="password"
             placeholder="Password (must be 5 characters)"
             name="password"
+            autoComplete="new-password"
             onChange={this.handleChange}
           />
           <input

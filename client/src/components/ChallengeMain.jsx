@@ -7,14 +7,18 @@ export default function ChallengeMain(props) {
     challengeView,
     handleViewClick,
     handleDefeat,
-    handleRevive
+    handleRevive,
+    currentTeam
   } = props
+
   let presidents = []
+  let noPres = ""
 
   // LOL this terrible code sets the "current view" class. it works, but we should refactor in the future. 
   let view;
   if (challengeView === "challengers") {
     presidents = challengers
+    noPres = `All president's defeated! All heal team ${currentTeam}`
     view = <div id="challenge-tab-section">
       <div id="challengers-view" className="challenge-tab current-view" onClick={handleViewClick} >
         <p>Challengers</p>
@@ -27,6 +31,7 @@ export default function ChallengeMain(props) {
     </div>
   } else {
     presidents = victories
+    noPres = "No President's have been clobbered by your patriotic binge-drinking thus far."
     view = <div id="challenge-tab-section">
       <div id="challengers-view" className="challenge-tab" onClick={handleViewClick} >
         <p>Challengers</p>
@@ -38,6 +43,8 @@ export default function ChallengeMain(props) {
       </div>
     </div>
   }
+
+
   // end of garbage code
 
   return (

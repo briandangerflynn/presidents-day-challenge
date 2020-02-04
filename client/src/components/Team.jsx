@@ -8,7 +8,7 @@ export default function Team(props) {
   } = props
 
   return (
-    <div>
+    <div id="team-show-full">
       {
         currentTeam &&
         <h2 id="team-show-teamname">{currentTeam.teamname}</h2>
@@ -23,7 +23,7 @@ export default function Team(props) {
           }
         </div>
         <div id="team-member-scores">
-          <p><b>Scores:</b></p>
+          <p><b>Presidents Defeated:</b></p>
           {
             currentTeamMembers.map(member => {
               let counter = 0

@@ -210,6 +210,7 @@ class App extends React.Component {
       <>
         <Header
           currentUser={currentUser}
+          currentTeam={currentTeam}
           handleLogout={this.handleLogout}
         />
         <Route exact path="/" render={() => (
@@ -254,6 +255,7 @@ class App extends React.Component {
               handleViewClick={this.handleViewClick}
               handleDefeat={this.handleDefeat}
               handleRevive={this.handleRevive}
+              currentTeam={currentTeam}
             />
           </ActionCableConsumer>
         )
@@ -270,6 +272,7 @@ class App extends React.Component {
         < Route path="/users/:id" render={() => (
           <Profile
             currentUser={currentUser}
+            currentTeam={currentTeam}
             teamPresidents={teamPresidents}
           />
         )} />

@@ -6,15 +6,18 @@
 
 body {
   margin: 0;
-  padding: 0;
+  padding: 0 0 100px 0;
   font-size: 14px;
   font-family: raleway;
   color: #000033;
+  background-image: url("https://www.transparenttextures.com/patterns/notebook.png");
+  background-color: #fdf7ef;
 }
 
 a {
   color: #000033;
   text-decoration: none;
+  padding: 5px 0;
 }
 
 .hidden {
@@ -34,16 +37,18 @@ header {
 }
 
 #title {
-  max-width: 400px;
+  width: 90%;
+  max-width: 500px;
   font-family: "LMS Star Spangled";
   color: #de0421;
-  font-size: 1.5em;
+  font-size: 2em;
   line-height: 50px;
-  margin: 20px auto;
+  padding: 20px 0px 20px 0px;
+  margin: 0 auto 10px auto;
 }
 
 header nav {
-  height: 40px;
+  height: 50px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -81,13 +86,13 @@ input.submit-button {
 }
 
 .challenger {
-  border: 1px solid black;
+  border: 1px solid #000033;
   border-radius: 5px;
   width: 90%;
   height: 100px;
   max-width: 500px;
   box-sizing: border-box;
-  margin: 5px auto;
+  margin: 10px auto;
   display: flex;
 }
 
@@ -118,6 +123,7 @@ input.submit-button {
   box-sizing: border-box;
   padding-left: 10px;
   flex-grow: 2;
+  background-color: white;
 }
 
 .pres-defeat, .undo-pres-defeat {
@@ -172,6 +178,19 @@ input.submit-button {
   max-width: 500px;
 }
 
+#user-show div {
+  border: 1px solid #000033;
+  background-color: white;
+  margin: 20px 0;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+#user-show p {
+  margin-left: 5px;
+}
+
 #rules ol {
   padding: 0;
 }
@@ -181,7 +200,7 @@ input.submit-button {
 }
 
 #rules li {
-  margin: 20px 0;
+  margin: 20px;
 }
 
 #rules img {
@@ -189,11 +208,21 @@ input.submit-button {
 
 }
 
-#team-show {
+#team-show-full,
+#rules{
+  background-color: white;
+  padding: 10px;
   width: 90%;
   margin: 0 auto;
-  display: flex;
   max-width: 500px;
+  box-sizing: border-box;
+  border: 1px solid #000033;
+  border-radius: 5px;
+}
+
+#team-show {
+  display: flex;
+  padding: 10px;
 }
 
 #team-show-teamname {
