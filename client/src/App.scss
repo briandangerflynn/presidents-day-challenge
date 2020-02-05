@@ -6,7 +6,6 @@
 
 body {
   margin: 0;
-  padding: 0 0 100px 0;
   font-size: 14px;
   font-family: raleway;
   color: #000033;
@@ -235,4 +234,13 @@ input.submit-button {
 
 #team-member-scores {
   flex-grow: 1;
+}
+
+footer {
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  color: #000033;
+  width: 100%;
+  margin-top: 100px;
 }

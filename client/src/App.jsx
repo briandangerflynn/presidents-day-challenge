@@ -280,6 +280,7 @@ class App extends React.Component {
         < Route exact path="/" render={() => (
           <Rules />
         )} />
+        <footer><small>&copy; 2020 &mdash; Team Dinos</small></footer>
       </>
     );
   }
