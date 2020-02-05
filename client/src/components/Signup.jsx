@@ -22,7 +22,7 @@ export default class Signup extends React.Component {
     } else if (this.props.currentUser) {
       return <Redirect to='/join-team' />
     }
-    const { username, email, password, password_confirmation } = this.state;
+
     return (
       <div className="form">
         <h2>Create Account</h2>
@@ -54,7 +54,6 @@ export default class Signup extends React.Component {
             type="password"
             placeholder="Confirm Password"
             name="password_confirmation"
-            value={password_confirmation}
             onChange={this.handleChange}
           />
           <input type="submit" className="submit-button" value="Create" />

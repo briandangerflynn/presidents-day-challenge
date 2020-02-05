@@ -15,7 +15,7 @@ export default function Team(props) {
       }
       <div id="team-show">
         <div id="team-member-list">
-          <p><b>Team Members:</b></p>
+          <p><b>Members:</b></p>
           {
             currentTeamMembers.map(member => (
               <p key={member.id}>{member.username}</p>
@@ -23,7 +23,7 @@ export default function Team(props) {
           }
         </div>
         <div id="team-member-scores">
-          <p><b>Presidents Defeated:</b></p>
+          <p><b>Victories:</b></p>
           {
             currentTeamMembers.map(member => {
               let counter = 0
