@@ -213,7 +213,7 @@ class App extends React.Component {
           currentTeam={currentTeam}
           handleLogout={this.handleLogout}
         />
-        <Route exact path="/" render={() => (
+        <Route path="/login" render={() => (
           <Login
             handleLogin={this.handleLogin}
             currentUser={currentUser}
@@ -277,7 +277,7 @@ class App extends React.Component {
           />
         )} />
 
-        < Route path="/rules" render={() => (
+        < Route exact path="/" render={() => (
           <Rules />
         )} />
       </>

@@ -26,7 +26,7 @@ export default class Signup extends React.Component {
     return (
       <div className="form">
         <h2>Create Account</h2>
-        <p><small>Got an account? <Link to="/" className="underline red">Sign In</Link></small></p>
+        <p><small>Got an account? <Link to="/login" className="underline red">Sign In</Link></small></p>
         <form onSubmit={(e) => {
           e.preventDefault();
           this.props.handleRegister(this.state);
@@ -35,21 +35,19 @@ export default class Signup extends React.Component {
             type="text"
             placeholder="Name"
             name="username"
-            value={username}
             onChange={this.handleChange}
           />
           <input
             type="text"
             placeholder="Email"
             name="email"
-            value={email}
             onChange={this.handleChange}
           />
           <input
             type="password"
             placeholder="Password (must be 5 characters)"
             name="password"
-            value={password}
+            autoComplete="new-password"
             onChange={this.handleChange}
           />
           <input

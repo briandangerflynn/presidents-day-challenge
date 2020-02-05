@@ -34,7 +34,7 @@ export default class Login extends React.Component {
         <form onSubmit={this.handleJoinTeam}>
           <input
             type="text"
-            placeholder="Enter Team Name"
+            placeholder="Enter Team Name (case sensitive)"
             name="teamname"
             onChange={this.handleChange}
           />

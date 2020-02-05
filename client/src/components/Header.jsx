@@ -5,13 +5,21 @@ export default function Header(props) {
   return (
     <header>
       <nav>
+
         {props.currentUser && props.currentTeam &&
           <>
             <NavLink activeStyle={{ fontWeight: "bold" }} to="/challenge">Challenge</NavLink>
             <NavLink activeStyle={{ fontWeight: "bold" }} to="/team">Team</NavLink>
             <NavLink activeStyle={{ fontWeight: "bold" }} to={`/users/${props.currentUser.id}`}>Profile</NavLink>
-            <NavLink activeStyle={{ fontWeight: "bold" }} to='/rules/'>Rules</NavLink>
+            <NavLink activeStyle={{ fontWeight: "bold" }} exact to='/'>Rules</NavLink>
             <Link to='/' onClick={props.handleLogout}>Logout</Link>
+          </>
+        }
+        {props.currentUser === null &&
+          <>
+            <NavLink activeStyle={{ fontWeight: "bold" }} exact to='/'>Rules</NavLink>
+            <NavLink activeStyle={{ fontWeight: "bold" }} to="/login">Login</NavLink>
+            <NavLink activeStyle={{ fontWeight: "bold" }} to="/register">Sign Up</NavLink>
           </>
         }
       </nav>
