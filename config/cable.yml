@@ -4,7 +4,14 @@ development:
 test:
   adapter: async
 
+# production:
+#   adapter: redis
+#   url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
+#   channel_prefix: presidents-day_production
+
 production:
   adapter: redis
-  url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
+  url: redis://redistogo:ed9153ff3be34cdb15172d77b78f7be6@pike.redistogo.com:9825/
   channel_prefix: presidents-day_production
+
+
