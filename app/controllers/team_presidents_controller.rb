@@ -9,7 +9,6 @@ class TeamPresidentsController < ApplicationController
   end
   
   def revive
-    p "ASODIGASOIGJASODIGJOSADIGJAOIDSFGJA"
     @team_president = @team.team_presidents.where(president_id: params[:president_id])
     @team_president.update(user: nil)
     TeamsChannel.broadcast_to @team, @team_president

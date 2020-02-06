@@ -18,8 +18,8 @@ export default function Header(props) {
         {props.currentUser === null &&
           <>
             <NavLink activeStyle={{ fontWeight: "bold" }} exact to='/'>Rules</NavLink>
-            <NavLink activeStyle={{ fontWeight: "bold" }} to="/login">Login</NavLink>
             <NavLink activeStyle={{ fontWeight: "bold" }} to="/register">Sign Up</NavLink>
+            <NavLink activeStyle={{ fontWeight: "bold" }} to="/login">Login</NavLink>
           </>
         }
       </nav>

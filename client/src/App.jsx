@@ -95,7 +95,6 @@ class App extends React.Component {
       president_id: id
     }
     await api.put(`/teams/${currentTeam.id}/presidents/${id}/defeat`, formData)
-    this.getTeamPresidents()
   }
 
   handleRevive = async (id) => {
@@ -106,7 +105,6 @@ class App extends React.Component {
       president_id: id
     }
     await api.put(`/teams/${currentTeam.id}/presidents/${id}/revive`, formData)
-    this.getTeamPresidents()
   }
 
   // ================================
@@ -187,8 +185,30 @@ class App extends React.Component {
   // ================================
 
   handleReceived = async (message) => {
-    console.log(message[0])
-    this.getTeamPresidents()
+    const { teamPresidents } = this.state
+    const challengers = []
+    const victories = []
+
+    teamPresidents.forEach(tp => {
+      if (message[0].president_id === tp.president_id) {
+        tp.user_id = message[0].user_id
+      }
+      if (!tp.user_id) {
+        challengers.push(tp.president)
+      } else {
+        victories.push(tp.president)
+      }
+    })
+
+    teamPresidents.sort(function (a, b) {
+      return a.id - b.id;
+    });
+
+    this.setState({
+      teamPresidents,
+      challengers,
+      victories
+    })
   }
 
   // ================================
