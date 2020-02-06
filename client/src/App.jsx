@@ -7,9 +7,12 @@ import Login from './components/Login';
 import ChallengeMain from './components/ChallengeMain';
 import Team from './components/Team';
 import Profile from './components/Profile';
-import Rules from './components/Rules';
+import Rules1 from './components/Rules1';
+import Rules2 from './components/Rules2';
+import Rules3 from './components/Rules3';
 import TeamJoin from './components/TeamJoin';
 import TeamCreate from './components/TeamCreate';
+import Welcome from './components/Welcome';
 
 import { Route } from 'react-router-dom';
 import { login, register, verifyToken, removeToken } from './services/auth';
@@ -357,8 +360,20 @@ class App extends React.Component {
           />
         )} />
 
+        < Route exact path="/rules" render={() => (
+          <Rules1 />
+        )} />
+
+        < Route exact path="/rules/2" render={() => (
+          <Rules2 />
+        )} />
+
+        < Route exact path="/rules/3" render={() => (
+          <Rules3 />
+        )} />
+
         < Route exact path="/" render={() => (
-          <Rules />
+          <Welcome />
         )} />
         <footer><small>&copy; 2020 &mdash; Team Dinos</small></footer>
       </>

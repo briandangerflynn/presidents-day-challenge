@@ -202,13 +202,15 @@ input.submit-button {
   margin: 20px;
 }
 
-#rules img {
+#rules img,
+#welcome img {
   max-width: 100%;
 
 }
 
 #team-show-full,
-#rules{
+#rules,
+#welcome {
   background-color: white;
   padding: 20px;
   width: 90%;
@@ -217,6 +219,22 @@ input.submit-button {
   box-sizing: border-box;
   border: 1px solid #f3f2f2;
   border-radius: 5px;
+}
+
+
+#welcome {
+  text-align: center;
+}
+
+#welcome button {
+  display: block;
+  background-color: #000033;
+  margin: 20px auto;
+  padding: 10px 20px;
+  color: white;
+  border: 1px solid white;
+  border-radius: 5px;
+  font-weight: bold;
 }
 
 #team-show {
@@ -243,4 +261,19 @@ footer {
   color: #000033;
   width: 100%;
   margin-top: 50px;
+}
+
+#rules-nav-div {
+  text-align: center;
+}
+
+.rules-nav {
+  display: inline-block;
+  height: 15px !important;
+  width: 15px !important;
+  border: 1px solid #000033;
+  border-radius: 100%;
+  margin: 0 10px;
+  box-sizing: border-box;
+  padding: 0 !important; 
 }

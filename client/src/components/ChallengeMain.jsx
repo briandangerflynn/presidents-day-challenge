@@ -1,7 +1,6 @@
 import React from 'react';
+
 export default function ChallengeMain(props) {
-
-
 
   const {
     challengers,
@@ -16,7 +15,7 @@ export default function ChallengeMain(props) {
 
   setTimeout(() => {
     getTeamPresidents()
-  }, 10000);
+  }, 30000);
 
   let presidents = []
   let noPres = ""
