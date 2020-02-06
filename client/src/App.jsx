@@ -319,7 +319,11 @@ class App extends React.Component {
 
         <Route path="/challenge" render={() => (
           <ActionCableConsumer
-            channel={{ channel: 'TeamsChannel', team: currentTeam }}
+            channel={{
+              channel: 'TeamsChannel',
+              team: currentTeam,
+              user: currentUser
+            }}
             onReceived={this.handleReceived}
           >
             <ChallengeMain

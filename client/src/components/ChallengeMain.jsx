@@ -64,13 +64,17 @@ export default function ChallengeMain(props) {
                 <small> ({president.years_active})</small>
                 <p>Favorite Drink: <b>{president.drink_type}</b></p>
               </div>
-              <div className="pres-defeat">
-                {
-                  challengeView === "challengers" ?
-                    <p onClick={() => handleDefeat(president.id)}>Drank!</p> :
-                    <p onClick={() => handleRevive(president.id)}>Undo!</p>
-                }
-              </div>
+
+              {
+                challengeView === "challengers" ?
+                  <div className="pres-defeat" onClick={() => handleDefeat(president.id)}>
+                    <p>Drank!</p>
+                  </div> :
+                  <div className="pres-defeat" onClick={() => handleRevive(president.id)}>
+                    <p>Undo!</p>
+                  </div>
+              }
+
             </div>
           ))
         }
