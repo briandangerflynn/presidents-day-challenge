@@ -334,6 +334,7 @@ class App extends React.Component {
               handleViewClick={this.handleViewClick}
               handleDefeat={this.handleDefeat}
               handleRevive={this.handleRevive}
+              getTeamPresidents={this.getTeamPresidents}
               currentTeam={currentTeam}
             />
           </ActionCableConsumer>
