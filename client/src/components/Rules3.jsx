@@ -1,5 +1,6 @@
 import React from 'react';
 import RulesNav from './RulesNav';
+import { Link } from 'react-router-dom';
 
 export default function Rules() {
   return (
@@ -14,6 +15,9 @@ export default function Rules() {
         <li>See the chart below if you need some guidance on how much alcohol is unsafe.</li>
       </ol>
       <img src="https://mk0wiweleciwqe485tn7.kinstacdn.com/wp-content/uploads/2018/01/blood-alcohol-content-768x398.jpg" alt="bac chart" />
+      <div className="rules-bottom-links">
+        <Link to="/rules/2" className="rules-nav-bottom"><button>&lt; Back</button></Link>
+      </div>
     </div>
   )
 }

@@ -269,11 +269,26 @@ footer {
 
 .rules-nav {
   display: inline-block;
-  height: 15px !important;
-  width: 15px !important;
+  height: 15px;
+  width: 15px;
   border: 1px solid #000033;
   border-radius: 100%;
-  margin: 0 10px;
+  margin: 0 20px;
   box-sizing: border-box;
-  padding: 0 !important; 
+  padding: 0; 
+}
+
+.rules-nav-bottom button {
+  display: inline-block;
+  background-color: #000033;
+  margin: 20px 5px;
+  padding: 10px 20px;
+  color: white;
+  border: 1px solid white;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.rules-bottom-links {
+  text-align: center;
 }

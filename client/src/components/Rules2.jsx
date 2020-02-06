@@ -1,5 +1,6 @@
 import React from 'react';
 import RulesNav from './RulesNav';
+import { Link } from 'react-router-dom';
 
 export default function Rules() {
   return (
@@ -16,6 +17,10 @@ export default function Rules() {
         <li>Each president has a favorite drink; however, as some drinks are difficult to find (e.g. madeira), alternative drinks are listed that you can use as substitutes.</li>
         <li>For sober presidents, you can either drink water or one of the alternative drinks listed.</li>
       </ol>
-    </div>
+      <div className="rules-bottom-links">
+        <Link to="/rules" className="rules-nav-bottom"><button>&lt; Back</button></Link>
+        <Link to="/rules/3" className="rules-nav-bottom"><button>Next &gt;</button></Link>
+      </div>
+    </div >
   )
 }
