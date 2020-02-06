@@ -191,12 +191,13 @@ class App extends React.Component {
   // ================================
 
   handleReceived = async (message) => {
+    console.log(message[0])
     const { teamPresidents } = this.state
     const challengers = []
     const victories = []
 
     teamPresidents.forEach(tp => {
-      if (message[0].president_id === tp.president_id) {
+      if (message[0].president_id === tp.president_id && tp.user_id !== message[0].user_id) {
         tp.user_id = message[0].user_id
       }
       if (!tp.user_id) {
