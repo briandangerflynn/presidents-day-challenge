@@ -1,15 +1,13 @@
 # frozen_string_literal: true
 
 class TeamsChannel < ApplicationCable::Channel
+
   def subscribed
-    # stream_from "some_channel"
-  # connected_user = connections_info[0][:subscriptions_identifiers][0]["user"]["id"]
-  
-      
+    if connections_info.length > 1
+      connections_info.length-1.times{connection.server.connections.shift()}
+    end
     @team = Team.find(params[:team]["id"])
     stream_for @team
-    
-    
   end
 
   def connections_info
