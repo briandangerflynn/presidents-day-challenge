@@ -94,23 +94,71 @@ class App extends React.Component {
   }
 
   handleDefeat = async (id) => {
-    const { currentUser, currentTeam } = this.state
+    const { currentUser, currentTeam, teamPresidents } = this.state
     const formData = {
       user: currentUser,
       team: currentTeam,
       president_id: id
     }
-    await api.put(`/teams/${currentTeam.id}/presidents/${id}/defeat`, formData)
+    const response = await api.put(`/teams/${currentTeam.id}/presidents/${id}/defeat`, formData)
+    const teamPresident = response.data[0]
+    const challengers = []
+    const victories = []
+
+    teamPresidents.forEach(tp => {
+      if (teamPresident.president_id === tp.president_id && tp.user_id !== teamPresident.user_id) {
+        tp.user_id = teamPresident.user_id
+      }
+      if (!tp.user_id) {
+        challengers.push(tp.president)
+      } else {
+        victories.push(tp.president)
+      }
+    })
+
+    teamPresidents.sort(function (a, b) {
+      return a.id - b.id;
+    });
+
+    this.setState({
+      teamPresidents,
+      challengers,
+      victories
+    })
   }
 
   handleRevive = async (id) => {
-    const { currentUser, currentTeam } = this.state
+    const { currentUser, currentTeam, teamPresidents } = this.state
     const formData = {
       user: currentUser,
       team: currentTeam,
       president_id: id
     }
-    await api.put(`/teams/${currentTeam.id}/presidents/${id}/revive`, formData)
+    const response = await api.put(`/teams/${currentTeam.id}/presidents/${id}/revive`, formData)
+    const teamPresident = response.data[0]
+    const challengers = []
+    const victories = []
+
+    teamPresidents.forEach(tp => {
+      if (teamPresident.president_id === tp.president_id && tp.user_id !== teamPresident.user_id) {
+        tp.user_id = teamPresident.user_id
+      }
+      if (!tp.user_id) {
+        challengers.push(tp.president)
+      } else {
+        victories.push(tp.president)
+      }
+    })
+
+    teamPresidents.sort(function (a, b) {
+      return a.id - b.id;
+    });
+
+    this.setState({
+      teamPresidents,
+      challengers,
+      victories
+    })
   }
 
   // ================================
