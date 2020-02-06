@@ -36,7 +36,10 @@ class App extends React.Component {
   }
 
   getCurrentTeamMembers = async () => {
-    const currentTeam = await this.verifyUser()
+    let { currentTeam } = this.state
+    if (!currentTeam) {
+      currentTeam = await this.verifyUser()
+    }
     if (currentTeam) {
       const response = await api.get(`/teams/${currentTeam.id}`)
       const currentTeamMembers = response.data.users
@@ -49,7 +52,10 @@ class App extends React.Component {
   getTeamPresidents = async () => {
     const challengers = []
     const victories = []
-    const currentTeam = await this.verifyUser()
+    let { currentTeam } = this.state
+    if (!currentTeam) {
+      currentTeam = await this.verifyUser()
+    }
     if (currentTeam) {
       const response = await api.get(`/teams/${currentTeam.id}`)
       const teamPresidents = response.data.team_presidents
