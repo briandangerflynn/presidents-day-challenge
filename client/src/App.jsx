@@ -53,7 +53,6 @@ class App extends React.Component {
   }
 
   getTeamPresidents = async () => {
-    console.log("Look Here!!!!")
     const challengers = []
     const victories = []
     let { currentTeam } = this.state
