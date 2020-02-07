@@ -85,5 +85,5 @@ Rails.application.configure do
 
   # web sockets
   config.web_socket_server_url = "wss://presidents-day-challenge.herokuapp.com/cable" 
-  config.action_cable.allowed_request_origins = ['https://presidents-day-challenge.surge.sh', 'http://presidents-day-challenge.surge.sh']
+  config.action_cable.allowed_request_origins = ['https://www.presidentsdaychallenge.com', 'http://www.presidentsdaychallenge.com']
 end
