@@ -8,7 +8,7 @@ export default function Header(props) {
 
         {props.currentUser && props.currentTeam &&
           <>
-            <NavLink activeStyle={{ fontWeight: "bold" }} to="/challenge">Challenge</NavLink>
+            <NavLink activeStyle={{ fontWeight: "bold" }} to="/challenge">Home</NavLink>
             <NavLink activeStyle={{ fontWeight: "bold" }} to="/team">Team</NavLink>
             <NavLink activeStyle={{ fontWeight: "bold" }} to={`/users/${props.currentUser.id}`}>Profile</NavLink>
             <NavLink activeStyle={{ fontWeight: "bold" }} to='/rules'>How to Play</NavLink>

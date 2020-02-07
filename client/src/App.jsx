@@ -291,90 +291,92 @@ class App extends React.Component {
           currentTeam={currentTeam}
           handleLogout={this.handleLogout}
         />
-        <Route path="/login" render={() => (
-          <Login
-            handleLogin={this.handleLogin}
-            currentUser={currentUser}
-            currentTeam={currentTeam}
-          />
-        )} />
-        <Route path="/register" render={() => (
-          <Signup
-            handleRegister={this.handleRegister}
-            currentTeam={currentTeam}
-            currentUser={currentUser}
-          />
-        )} />
-
-        <Route path="/create-team" render={() => (
-          <TeamCreate
-            createTeam={this.createTeam}
-            currentTeam={currentTeam}
-            currentUser={currentUser} />
-        )} />
-
-        <Route path="/join-team" render={() => (
-          <TeamJoin
-            joinTeam={this.joinTeam}
-            currentTeam={currentTeam} />
-        )} />
-
-
-        <Route path="/challenge" render={() => (
-          <ActionCableConsumer
-            channel={{
-              channel: 'TeamsChannel',
-              team: currentTeam,
-              user: currentUser
-            }}
-            onReceived={this.handleReceived}
-          >
-            <ChallengeMain
-              teamPresidents={teamPresidents}
-              challengers={challengers}
-              victories={victories}
-              challengeView={challengeView}
-              handleViewClick={this.handleViewClick}
-              handleDefeat={this.handleDefeat}
-              handleRevive={this.handleRevive}
-              getTeamPresidents={this.getTeamPresidents}
+        <main>
+          <Route path="/login" render={() => (
+            <Login
+              handleLogin={this.handleLogin}
+              currentUser={currentUser}
               currentTeam={currentTeam}
             />
-          </ActionCableConsumer>
-        )
-        } />
+          )} />
+          <Route path="/register" render={() => (
+            <Signup
+              handleRegister={this.handleRegister}
+              currentTeam={currentTeam}
+              currentUser={currentUser}
+            />
+          )} />
 
-        < Route path="/team" render={() => (
-          <Team
-            currentTeam={currentTeam}
-            currentTeamMembers={currentTeamMembers}
-            teamPresidents={teamPresidents}
-          />
-        )} />
+          <Route path="/create-team" render={() => (
+            <TeamCreate
+              createTeam={this.createTeam}
+              currentTeam={currentTeam}
+              currentUser={currentUser} />
+          )} />
 
-        < Route path="/users/:id" render={() => (
-          <Profile
-            currentUser={currentUser}
-            currentTeam={currentTeam}
-            teamPresidents={teamPresidents}
-          />
-        )} />
+          <Route path="/join-team" render={() => (
+            <TeamJoin
+              joinTeam={this.joinTeam}
+              currentTeam={currentTeam} />
+          )} />
 
-        < Route exact path="/rules" render={() => (
-          <Rules1 />
-        )} />
 
-        < Route exact path="/rules/2" render={() => (
-          <Rules2 />
-        )} />
+          <Route path="/challenge" render={() => (
+            <ActionCableConsumer
+              channel={{
+                channel: 'TeamsChannel',
+                team: currentTeam,
+                user: currentUser
+              }}
+              onReceived={this.handleReceived}
+            >
+              <ChallengeMain
+                teamPresidents={teamPresidents}
+                challengers={challengers}
+                victories={victories}
+                challengeView={challengeView}
+                handleViewClick={this.handleViewClick}
+                handleDefeat={this.handleDefeat}
+                handleRevive={this.handleRevive}
+                getTeamPresidents={this.getTeamPresidents}
+                currentTeam={currentTeam}
+              />
+            </ActionCableConsumer>
+          )
+          } />
 
-        < Route exact path="/rules/3" render={() => (
-          <Rules3 />
-        )} />
+          < Route path="/team" render={() => (
+            <Team
+              currentTeam={currentTeam}
+              currentTeamMembers={currentTeamMembers}
+              teamPresidents={teamPresidents}
+            />
+          )} />
 
-        < Route exact path="/" render={() => (
-          <Welcome />
-        )} />
+          < Route path="/users/:id" render={() => (
+            <Profile
+              currentUser={currentUser}
+              currentTeam={currentTeam}
+              teamPresidents={teamPresidents}
+            />
+          )} />
+
+          < Route exact path="/rules" render={() => (
+            <Rules1 />
+          )} />
+
+          < Route exact path="/rules/2" render={() => (
+            <Rules2 />
+          )} />
+
+          < Route exact path="/rules/3" render={() => (
+            <Rules3 />
+          )} />
+
+          < Route exact path="/" render={() => (
+            <Welcome />
+          )} />
+        </main>
         <footer><small>&copy; 2020 &mdash; Team Dinos</small></footer>
       </>
     );

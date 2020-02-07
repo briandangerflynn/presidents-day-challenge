@@ -26,7 +26,7 @@ export default class Login extends React.Component {
 
     return (
       <div className="form">
-        <h2>Sign In</h2>
+        <h2>Login</h2>
         <p><small>New here? <Link to="/register" className="underline red">Create an account</Link></small></p>
         <form onSubmit={(e) => {
           e.preventDefault();

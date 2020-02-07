@@ -76,7 +76,7 @@ export default function ChallengeMain(props) {
                   <div className="pres-defeat" onClick={() => handleDefeat(president.id)}>
                     <p>Drank!</p>
                   </div> :
-                  <div className="pres-defeat" onClick={() => handleRevive(president.id)}>
+                  <div className="pres-revive" onClick={() => handleRevive(president.id)}>
                     <p>Undo!</p>
                   </div>
               }
