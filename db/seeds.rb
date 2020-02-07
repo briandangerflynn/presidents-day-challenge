@@ -61,13 +61,18 @@ p "#{President.count} presidents created"
 
 test_user = User.create!({email: "test@email.com", password: "12345", username: "test"})
 brian = User.create!({email: "bdflynny@gmail.com", password: "brian", username: "brian"})
-team = Team.new({teamname: "Test Team", creator: test_user})
-team.users << test_user
-team.users << brian
 
+p "#{User.count} users created"
 
-if team.save
+team = Team.new({teamname: "Test Team", creator: test_user, password: "12345"})
+
+if team.save!
   President.all.each do |pres|
     team.team_presidents.create!(president: pres)
   end
 end
+
+team.users << test_user
+team.users << brian
+
+p "#{Team.count} teams created"

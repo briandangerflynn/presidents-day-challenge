@@ -18,7 +18,8 @@ export default class Login extends React.Component {
   handleJoinTeam = async (e) => {
     e.preventDefault();
     const formData = {
-      teamname: this.state.teamname
+      teamname: this.state.teamname,
+      password: this.state.password
     }
     this.props.joinTeam(formData)
   }

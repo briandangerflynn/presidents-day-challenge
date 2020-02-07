@@ -8,16 +8,20 @@ class TeamsController < ApplicationController
 
   # JOIN /teams/join
   def join
-    @team = Team.find_by(teamname: params["team"]["teamname"])
-    if @team.users.include? current_user
-      render json: {error: "You're already on this team"}
-    else
-      @team.users << current_user
-      if @team.save
-        render json: @team
+    @team = Team.find_by(teamname: team_params["teamname"])
+    if @team.authenticate(team_params[:password])
+      if @team.users.include? current_user
+        render json: {error: "You're already on this team"}
       else
-        render json: @team.errors, status: :unprocessable_entity
+        @team.users << current_user
+        if @team.save
+          render json: @team
+        else
+          render json: @team.errors, status: :unprocessable_entity
+        end
       end
+    else
+      render json: { error: 'unauthorized' }, status: :unauthorized
     end
   end
 
@@ -58,6 +62,6 @@ class TeamsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def team_params
-      params.require(:team).permit(:teamname, :creator_id, :defeated)
+      params.require(:team).permit(:teamname, :creator_id, :defeated, :password)
     end
 end
