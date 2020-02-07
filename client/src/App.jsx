@@ -370,7 +370,7 @@ class App extends React.Component {
           )} />
 
           < Route exact path="/rules/3" render={() => (
-            <Rules3 />
+            <Rules3 currentUser={currentUser} />
           )} />
 
           < Route exact path="/" render={() => (
