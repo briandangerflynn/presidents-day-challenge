@@ -7,6 +7,11 @@
 #   Character.create!(name: 'Luke', movie: movies.first)
 
 
+TeamPresident.destroy_all;
+President.destroy_all;
+Team.destroy_all;
+User.destroy_all;
+
 President.create!(name: "George Washington", presidency: "1st", years_active: "1789–1797", drink_type: "beer", specific_drink: "beer", alt_one: nil, alt_two: nil, image_url: "https://bit.ly/2BSjAY5")
 President.create!(name: "John Adams", presidency: "2nd", years_active: "1797–1801", drink_type: "hard cider", specific_drink: "hard cider", alt_one: nil, alt_two: nil, image_url: "https://bit.ly/2VoevzM")
 President.create!(name: "Thomas Jefferson", presidency: "3rd", years_active: "1801-1809", drink_type: "wine", specific_drink: "wine", alt_one: nil, alt_two: nil, image_url: "https://bit.ly/2EXLaqN")
