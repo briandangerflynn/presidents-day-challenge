@@ -6,7 +6,7 @@ export default class ChallengeMain extends React.Component {
     this.setState({
       interval: setInterval(() => {
         this.props.getTeamPresidents()
-      }, 5000)
+      }, 30000)
     })
   }
 
