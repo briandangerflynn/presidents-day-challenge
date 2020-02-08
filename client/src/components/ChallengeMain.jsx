@@ -22,7 +22,6 @@ export default class ChallengeMain extends React.Component {
       handleViewClick,
       handleDefeat,
       handleRevive,
-      currentTeam
     } = this.props
 
     const winText = challengers.length === 0 && challengeView === "challengers" ? <p className="empty-list-text">You drank 'em all you patriotic boozehound! Congrats!</p> : null;

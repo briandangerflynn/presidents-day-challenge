@@ -56,10 +56,6 @@ class App extends React.Component {
   }
 
   getTeamPresidents = async () => {
-<<<<<<< HEAD
-=======
-    console.log("Getting Presidents")
->>>>>>> brian
     const challengers = []
     const victories = []
     let { currentTeam, win } = this.state
@@ -369,6 +365,7 @@ class App extends React.Component {
                 handleRevive={this.handleRevive}
                 getTeamPresidents={this.getTeamPresidents}
                 currentTeam={currentTeam}
+                currentUser={currentUser}
                 win={win}
               />
             </ActionCableConsumer>
