@@ -37,6 +37,7 @@ export default class Signup extends React.Component {
             type="text"
             placeholder="Team Name"
             name="teamname"
+            required
             onChange={this.handleChange}
           />
           <input
@@ -44,6 +45,7 @@ export default class Signup extends React.Component {
             placeholder="Password (must be 5 characters)"
             name="password"
             autoComplete="new-password"
+            required
             onChange={this.handleChange}
           />
           <input type="submit" className="submit-button" value="Create" />

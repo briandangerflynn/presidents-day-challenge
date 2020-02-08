@@ -35,12 +35,14 @@ export default class Signup extends React.Component {
             type="text"
             placeholder="Name"
             name="username"
+            required
             onChange={this.handleChange}
           />
           <input
             type="text"
             placeholder="Email"
             name="email"
+            required
             onChange={this.handleChange}
           />
           <input
@@ -48,12 +50,14 @@ export default class Signup extends React.Component {
             placeholder="Password (must be 5 characters)"
             name="password"
             autoComplete="new-password"
+            required
             onChange={this.handleChange}
           />
           <input
             type="password"
             placeholder="Confirm Password"
             name="password_confirmation"
+            required
             onChange={this.handleChange}
           />
           <input type="submit" className="submit-button" value="Create" />

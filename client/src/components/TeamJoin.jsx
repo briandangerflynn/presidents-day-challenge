@@ -37,6 +37,7 @@ export default class Login extends React.Component {
             type="text"
             placeholder="Enter Team Name (case sensitive)"
             name="teamname"
+            required
             onChange={this.handleChange}
           />
           <input
@@ -44,6 +45,7 @@ export default class Login extends React.Component {
             placeholder="Password (must be 5 characters)"
             name="password"
             autoComplete="new-password"
+            required
             onChange={this.handleChange}
           />
           <input

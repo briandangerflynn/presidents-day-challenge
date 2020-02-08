@@ -37,6 +37,7 @@ export default class Login extends React.Component {
             placeholder="Name"
             name="username"
             value={username}
+            required
             onChange={this.handleChange}
           />
           <input
@@ -44,6 +45,7 @@ export default class Login extends React.Component {
             placeholder="Password"
             name="password"
             value={password}
+            required
             onChange={this.handleChange}
           />
           <input
