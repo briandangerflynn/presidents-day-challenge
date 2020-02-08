@@ -13,6 +13,7 @@ import Rules3 from './components/Rules3';
 import TeamJoin from './components/TeamJoin';
 import TeamCreate from './components/TeamCreate';
 import Welcome from './components/Welcome';
+import WinModal from './components/WinModal';
 
 import { Route } from 'react-router-dom';
 import { login, register, verifyToken, removeToken } from './services/auth';
@@ -30,7 +31,9 @@ class App extends React.Component {
     teamPresidents: [],
     challengers: [],
     victories: [],
-    challengeView: "challengers"
+    challengeView: "challengers",
+    win: false,
+    modal: false
   }
 
   async componentDidMount() {
@@ -53,10 +56,10 @@ class App extends React.Component {
   }
 
   getTeamPresidents = async () => {
-    console.log("Look Here!!!!")
+    console.log("Getting Presidents")
     const challengers = []
     const victories = []
-    let { currentTeam } = this.state
+    let { currentTeam, win } = this.state
     if (!currentTeam) {
       currentTeam = await this.verifyUser()
     }
@@ -87,18 +90,15 @@ class App extends React.Component {
       this.setState({
         challengeView: "challengers"
       })
-
-      console.log(this.state.challengeView)
     } else {
       this.setState({
         challengeView: "victories"
       })
-      console.log(this.state.challengeView)
     }
   }
 
   handleDefeat = async (id) => {
-    const { currentUser, currentTeam, teamPresidents } = this.state
+    const { currentUser, currentTeam, teamPresidents, win } = this.state
     const formData = {
       user: currentUser,
       team: currentTeam,
@@ -119,6 +119,12 @@ class App extends React.Component {
         victories.push(tp.president)
       }
     })
+
+    if (challengers.length === 0 && !win) {
+      this.setState({ win: true, modal: true })
+    } else if (challengers.length > 0 && win) {
+      this.setState({ win: false, modal: false })
+    }
 
     teamPresidents.sort(function (a, b) {
       return a.id - b.id;
@@ -244,7 +250,7 @@ class App extends React.Component {
 
   handleReceived = async (message) => {
     console.log(message[0])
-    const { teamPresidents } = this.state
+    const { teamPresidents, win } = this.state
     const challengers = []
     const victories = []
 
@@ -263,11 +269,23 @@ class App extends React.Component {
       return a.id - b.id;
     });
 
+    if (challengers.length === 0 && !win) {
+      this.setState({ win: true, modal: true })
+    } else if (challengers.length > 0 && win) {
+      this.setState({ win: false, modal: false })
+    }
+
     this.setState({
       teamPresidents,
       challengers,
       victories
     })
+  }
+
+  // Modal Logic
+
+  handleCloseModal = () => {
+    this.setState({ modal: false })
   }
 
   // ================================
@@ -282,17 +300,24 @@ class App extends React.Component {
       challengeView,
       currentTeam,
       currentTeamMembers,
-      currentUser
+      currentUser,
+      win,
+      modal
     } = this.state;
+
+    const winModal = win && modal ? <WinModal handleCloseModal={this.handleCloseModal} /> : null;
+    const screen = modal ? <div id="screen" onClick={this.handleCloseModal}></div> : null;
 
     return (
       <>
+        {screen}
         <Header
           currentUser={currentUser}
           currentTeam={currentTeam}
           handleLogout={this.handleLogout}
         />
         <main>
+          {winModal}
           <Route path="/login" render={() => (
             <Login
               handleLogin={this.handleLogin}
@@ -341,6 +366,7 @@ class App extends React.Component {
                 handleRevive={this.handleRevive}
                 getTeamPresidents={this.getTeamPresidents}
                 currentTeam={currentTeam}
+                win={win}
               />
             </ActionCableConsumer>
           )
@@ -375,7 +401,7 @@ class App extends React.Component {
           )} />
 
           < Route exact path="/" render={() => (
-            <Welcome />
+            <Welcome currentUser={currentUser} />
           )} />
         </main>
         <footer><small>&copy; 2020 &mdash; Team Dinos</small></footer>

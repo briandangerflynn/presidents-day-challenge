@@ -22,40 +22,43 @@ export default class ChallengeMain extends React.Component {
       handleViewClick,
       handleDefeat,
       handleRevive,
-      currentTeam,
+      currentTeam
     } = this.props
 
+    const winText = challengers.length === 0 && challengeView === "challengers" ? <p className="empty-list-text">You drank 'em all you patriotic boozehound! Congrats!</p> : null;
+
+    const noVictoriesText = victories.length === 0 && challengeView !== "challengers" ? <p className="empty-list-text">Fill up yer cup! No President's have been clobbered by your patriotic binge-drinking thus far.</p> : null;
+
     let presidents = []
-    let noPres = ""
 
     // LOL this terrible code sets the "current view" class. it works, but we should refactor in the future. 
     let view;
     if (challengeView === "challengers") {
       presidents = challengers
-      noPres = `All president's defeated! All heal team ${currentTeam}`
-      view = <div id="challenge-tab-section">
-        <div id="challengers-view" className="challenge-tab current-view" onClick={handleViewClick} >
-          <p>Challengers</p>
-          <p>{challengers.length}</p>
+      view =
+        <div id="challenge-tab-section">
+          <div id="challengers-view" className="challenge-tab current-view" onClick={handleViewClick} >
+            <p>Challengers</p>
+            <p>{challengers.length}</p>
+          </div>
+          <div id="victories-view" className="challenge-tab" onClick={handleViewClick}>
+            <p>Victories</p>
+            <p>{victories.length}</p>
+          </div>
         </div>
-        <div id="victories-view" className="challenge-tab" onClick={handleViewClick}>
-          <p>Victories</p>
-          <p>{victories.length}</p>
-        </div>
-      </div>
     } else {
       presidents = victories
-      noPres = "No President's have been clobbered by your patriotic binge-drinking thus far."
-      view = <div id="challenge-tab-section">
-        <div id="challengers-view" className="challenge-tab" onClick={handleViewClick} >
-          <p>Challengers</p>
-          <p>{challengers.length}</p>
+      view =
+        <div id="challenge-tab-section">
+          <div id="challengers-view" className="challenge-tab" onClick={handleViewClick} >
+            <p>Challengers</p>
+            <p>{challengers.length}</p>
+          </div>
+          <div id="victories-view" className="challenge-tab current-view" onClick={handleViewClick}>
+            <p>Victories</p>
+            <p>{victories.length}</p>
+          </div>
         </div>
-        <div id="victories-view" className="challenge-tab current-view" onClick={handleViewClick}>
-          <p>Victories</p>
-          <p>{victories.length}</p>
-        </div>
-      </div>
     }
 
 
@@ -66,6 +69,8 @@ export default class ChallengeMain extends React.Component {
         {/* garbage code implemented here */}
         {view}
         <div id="challengers-list">
+          {winText}
+          {noVictoriesText}
           {
             presidents.map(president => (
               <div key={president.id} className="challenger">
@@ -76,9 +81,8 @@ export default class ChallengeMain extends React.Component {
                   <h3>{president.name}</h3>
                   <small>{president.presidency} president</small>
                   <small> ({president.years_active})</small>
-                  <p>Favorite Drink: <b>{president.drink_type}</b></p>
+                  <p>Drink Type: <b>{president.drink_type}</b></p>
                 </div>
-
                 {
                   challengeView === "challengers" ?
                     <div className="pres-defeat" onClick={() => handleDefeat(president.id)}>
@@ -88,7 +92,6 @@ export default class ChallengeMain extends React.Component {
                       <p>Undo!</p>
                     </div>
                 }
-
               </div>
             ))
           }

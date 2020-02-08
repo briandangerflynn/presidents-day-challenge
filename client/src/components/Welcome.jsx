@@ -1,8 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 
-export default function Welcome() {
+export default function Welcome(props) {
+  const { currentUser } = props
+  if (currentUser) {
+    return <Redirect to='/challenge' />
+  }
   return (
     <div id="welcome">
       <img src="https://res.cloudinary.com/briandanger/image/upload/v1580784297/Screen_Shot_2020-02-03_at_5.23.00_PM_cuiy6z.png" alt="Founding Boozehounds" />
