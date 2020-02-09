@@ -22,6 +22,7 @@ export default class ChallengeMain extends React.Component {
       handleViewClick,
       handleDefeat,
       handleRevive,
+      handleChallengeClick
     } = this.props
 
     const winText = challengers.length === 0 && challengeView === "challengers" ? <p className="empty-list-text">You drank 'em all you patriotic boozehound! Congrats!</p> : null;
@@ -84,8 +85,8 @@ export default class ChallengeMain extends React.Component {
                 </div>
                 {
                   challengeView === "challengers" ?
-                    <div className="pres-defeat" onClick={() => handleDefeat(president.id)}>
-                      <p>Drank!</p>
+                    <div className="pres-defeat" onClick={() => handleChallengeClick(president.id)}>
+                      <p>Challenge!</p>
                     </div> :
                     <div className="pres-revive" onClick={() => handleRevive(president.id)}>
                       <p>Undo!</p>

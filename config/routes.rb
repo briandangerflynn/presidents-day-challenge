@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/users/verify', to: 'users#verify'
   resources :users
   
+  get '/presidents/:id', to: 'presidents#show'
   put '/teams/:team_id/presidents/:id/defeat', to: 'team_presidents#defeat'
   put '/teams/:team_id/presidents/:id/revive', to: 'team_presidents#revive'
   put '/teams/join', to: 'teams#join'

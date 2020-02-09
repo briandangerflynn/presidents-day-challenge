@@ -5,6 +5,7 @@ import Header from './components/Header';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import ChallengeMain from './components/ChallengeMain';
+import ChallengeModal from './components/ChallengeModal';
 import Team from './components/Team';
 import Profile from './components/Profile';
 import Rules1 from './components/Rules1';
@@ -33,7 +34,9 @@ class App extends React.Component {
     victories: [],
     challengeView: "challengers",
     win: false,
-    modal: false
+    modal: false,
+    challengeSpecifics: false,
+    currentPresident: null
   }
 
   async componentDidMount() {
@@ -132,7 +135,9 @@ class App extends React.Component {
     this.setState({
       teamPresidents,
       challengers,
-      victories
+      victories,
+      currentPresident: null,
+      modal: false
     })
   }
 
@@ -287,6 +292,16 @@ class App extends React.Component {
     this.setState({ modal: false })
   }
 
+  handleChallengeClick = async (id) => {
+    const response = await api.get(`/presidents/${id}`)
+    const currentPresident = response.data
+    this.setState({
+      challengeSpecifics: true,
+      modal: true,
+      currentPresident: currentPresident
+    })
+  }
+
   // ================================
   // ============ RENDER ============
   // ================================
@@ -301,11 +316,29 @@ class App extends React.Component {
       currentTeamMembers,
       currentUser,
       win,
-      modal
+      modal,
+      challengeSpecifics,
+      currentPresident
     } = this.state;
 
-    const winModal = win && modal ? <WinModal handleCloseModal={this.handleCloseModal} /> : null;
-    const screen = modal ? <div id="screen" onClick={this.handleCloseModal}></div> : null;
+    console.log(challengeSpecifics)
+
+    const challengeModal = !win && challengeSpecifics && modal ?
+      <ChallengeModal
+        handleCloseModal={this.handleCloseModal} currentPresident={currentPresident}
+        handleDefeat={this.handleDefeat} />
+      : null;
+
+    const winModal = win && modal ?
+      <WinModal
+        handleCloseModal={this.handleCloseModal} />
+      : null;
+
+    const screen = modal ?
+      <div id="screen"
+        onClick={this.handleCloseModal}></div>
+      : null;
+
 
     return (
       <>
@@ -317,6 +350,7 @@ class App extends React.Component {
         />
         <main>
           {winModal}
+          {challengeModal}
           <Route path="/login" render={() => (
             <Login
               handleLogin={this.handleLogin}
@@ -366,6 +400,7 @@ class App extends React.Component {
                 getTeamPresidents={this.getTeamPresidents}
                 currentTeam={currentTeam}
                 currentUser={currentUser}
+                handleChallengeClick={this.handleChallengeClick}
                 win={win}
               />
             </ActionCableConsumer>

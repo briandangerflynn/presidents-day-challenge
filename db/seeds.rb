@@ -104,8 +104,8 @@ President.create!(name: "Bill Clinton", presidency: "42nd", years_active: "1993-
 8 oz. hard cider;
 8 oz. lager beer;
 Pour cider into a chilled glass. Float chilled lager beer on top of the hard cider. (Pour over the back of a spoon to do this delicately.)", alt_one: nil, alt_two: nil, image_url: "https://bit.ly/2F1qKxa")
-President.create!(name: "George W. Bush", presidency: "43rd", years_active: "2001-2009", drink_type: "sober", specific_drink: "Water", alt_one: "Cheap College Beer", alt_two: "Bourbon", image_url: "https://bit.ly/2GQwUlh")
-President.create!(name: "Barack Obama", presidency: "44th", years_active: "2009-2017", drink_type: "beer", specific_drink: "Honey Ale Beer", alt_one: nil, alt_two: nil, image_url: "https://bit.ly/2BRzt0X")
+President.create!(name: "George W. Bush", presidency: "43rd", years_active: "2001-2009", drink_type: "sober", specific_drink: "Water or a Diet Pepsi with a slice of Lemon", alt_one: "Cheap College Beer", alt_two: "Bourbon", image_url: "https://bit.ly/2GQwUlh")
+President.create!(name: "Barack Obama", presidency: "44th", years_active: "2009-2017", drink_type: "beer", specific_drink: "Honey Ale Beer", alt_one: "Aged Tequila", alt_two: nil, image_url: "https://bit.ly/2BRzt0X")
 President.create!(name: "Donald Trump", presidency: "45th", years_active: "2017-present", drink_type: "sober", specific_drink: "Diet Coke or water", alt_one: nil, alt_two: nil, image_url: "https://bit.ly/2Aq9wW9")
 
 p "#{President.count} presidents created"
