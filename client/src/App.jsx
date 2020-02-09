@@ -321,8 +321,6 @@ class App extends React.Component {
       currentPresident
     } = this.state;
 
-    console.log(challengeSpecifics)
-
     const challengeModal = !win && challengeSpecifics && modal ?
       <ChallengeModal
         handleCloseModal={this.handleCloseModal} currentPresident={currentPresident}

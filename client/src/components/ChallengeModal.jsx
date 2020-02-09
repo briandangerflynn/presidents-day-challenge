@@ -37,7 +37,6 @@ export default function ChallengeModal(props) {
           : <p>{specific_drink}</p>
       }
       <button className="drink-button" onClick={() => handleDefeat(id)}>Drink</button>
-
     </div >
   )
 }
