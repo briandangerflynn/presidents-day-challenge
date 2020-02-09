@@ -5,7 +5,8 @@ import { api } from '../services/api-helper';
 
 export default class Login extends React.Component {
   state = {
-    teamname: ""
+    teamname: "",
+    password: ""
   }
 
   handleChange = (e) => {

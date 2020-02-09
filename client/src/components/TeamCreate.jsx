@@ -4,7 +4,8 @@ import { api } from '../services/api-helper';
 
 export default class Signup extends React.Component {
   state = {
-    teamname: ""
+    teamname: "",
+    password: ""
   }
 
   handleChange = (e) => {
@@ -18,7 +19,8 @@ export default class Signup extends React.Component {
     e.preventDefault();
     const formData = {
       teamname: this.state.teamname,
-      creator_id: this.props.currentUser.id
+      creator_id: this.props.currentUser.id,
+      password: this.state.password
     }
     this.props.createTeam(formData)
   }
