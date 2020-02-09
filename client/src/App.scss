@@ -372,6 +372,8 @@ p.modal-exit:hover {
 
 .challenge-modal {
   overflow: scroll;
+  padding: 0 20px 20px 20px;
+  box-sizing: border-box;
 }
 
 .challenge-modal img {
@@ -389,4 +391,19 @@ p.modal-exit:hover {
   background-color: #de0421;
   color: white;
   font-weight: bold;
+}
+
+.drink-button:hover {
+  cursor: pointer;
+}
+
+.cocktail-instruction  {
+  text-align: center;
+  font-weight: bold;
+}
+
+.cocktail-instruction ~ .cocktail-instruction{
+  text-align: left;
+  padding-left: 10px;
+  font-weight: normal;
 }

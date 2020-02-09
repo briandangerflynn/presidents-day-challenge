@@ -28,11 +28,11 @@ export default function ChallengeModal(props) {
       <p className="modal-exit" onClick={handleCloseModal}>X</p>
       <h2>{name}</h2>
       <img src={image_url} />
-      <h4>Favorite Drink:</h4>
+      <h3>Favorite Drink:</h3>
       {
         drink_type === "cocktail" ?
           cocktailInstructions.map(instruction => (
-            <p>{instruction}</p>
+            <p className="cocktail-instruction">{instruction}</p>
           ))
           : <p>{specific_drink}</p>
       }

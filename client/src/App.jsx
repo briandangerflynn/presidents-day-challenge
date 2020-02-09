@@ -133,9 +133,9 @@ class App extends React.Component {
     });
 
     this.setState({
-      teamPresidents,
-      challengers,
-      victories,
+      teamPresidents: teamPresidents,
+      challengers: challengers,
+      victories: victories,
       currentPresident: null,
       modal: false
     })
