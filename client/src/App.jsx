@@ -11,6 +11,7 @@ import Profile from './components/Profile';
 import Rules1 from './components/Rules1';
 import Rules2 from './components/Rules2';
 import Rules3 from './components/Rules3';
+import Rules4 from './components/Rules4';
 import TeamJoin from './components/TeamJoin';
 import TeamCreate from './components/TeamCreate';
 import Welcome from './components/Welcome';
@@ -431,7 +432,11 @@ class App extends React.Component {
           )} />
 
           < Route exact path="/rules/3" render={() => (
-            <Rules3 currentUser={currentUser} />
+            <Rules3 />
+          )} />
+
+          < Route exact path="/rules/4" render={() => (
+            <Rules4 currentUser={currentUser} />
           )} />
 
           < Route exact path="/" render={() => (

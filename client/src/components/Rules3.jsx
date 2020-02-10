@@ -2,27 +2,21 @@ import React from 'react';
 import RulesNav from './RulesNav';
 import { Link } from 'react-router-dom';
 
-export default function Rules(props) {
-  const { currentUser } = props
+export default function Rules() {
   return (
     <div id="rules">
       <RulesNav />
-      <h2>Suggestions:</h2>
+      <h2>How To Play:</h2>
       <ol>
-        <li>Make it a themed event! Team uniforms or costumes can really make this a lot more fun.</li>
-        <li>Get out of the house. Bar hopping can make this game even more fun and can help spread the joy!</li>
-        <li>Don't be an asshole. That's just general life advice.</li>
-        <li><b>Pace Yourself.</b> This game is meant to be a fun way to enjoy a holiday, hangout with friends, and learn a little about history. It's <i><b>not</b></i> meant to be a launchpad into alcohol poisioning. <b>Please drink responsibly.</b></li>
-        <li>See the chart below if you need some guidance on how much alcohol is unsafe.</li>
+        <li>Click the "challenge" button next to a president to see their favorite drink. After consuming it, click the "drink" button to mark them as defeated. The app auto-updates the list for everyone on your team (it may take up to 30 seconds to sync).</li>
+        <li>If you accidentally mark a president as defeated, go to the "Victories" tab and click the "Revive" button next to that president. This will put them back in the "Challengers" tab.</li>
+        <li>Some drinks are rare or difficult to make (e.g. Madeira, Tokay wine, certain cocktails). Just drink the closest thing you can find :)</li>
+        <li>For sober presidents, either drink the listed non-alcoholic drink or the themed cocktail listed.</li>
       </ol>
-      <img src="https://mk0wiweleciwqe485tn7.kinstacdn.com/wp-content/uploads/2018/01/blood-alcohol-content-768x398.jpg" alt="bac chart" />
       <div className="rules-bottom-links">
         <Link to="/rules/2" className="rules-nav-bottom"><button>&lt; Back</button></Link>
-        {
-          !currentUser &&
-          <Link to="/register" id="play-now" className="rules-nav-bottom"><button>Play Now</button></Link>
-        }
+        <Link to="/rules/4" className="rules-nav-bottom"><button>Next &gt;</button></Link>
       </div>
-    </div>
+    </div >
   )
 }

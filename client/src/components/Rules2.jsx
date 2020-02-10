@@ -6,16 +6,12 @@ export default function Rules() {
   return (
     <div id="rules">
       <RulesNav />
-      <h2>How To Play:</h2>
+      <h2>Getting Started:</h2>
       <ol>
-        <li>Create an account and either create a new team or join an existing one. <i>Note: When joining a team, team names are case sensitive.</i></li>
-        <li>There are no limits on how big or small your team has to be; however, team size will affect how many drinks each individual will need to have, so choose responsibly. It's okay to add people to a team after the game has started.</li>
-        <li>There are 44 drinks in the challenge. You can find all 44 drinks listed on the "Challenge" page, in the "Challengers" tab.</li>
-        <li>To complete the game, your team must collectively consume all 44 beverages.</li>
-        <li>When someone on your team has consumed a president's drink, click on the "drank" button next to that president to mark them as defeated. The app will update the list for everyone on your team (it may take up to 30 seconds to sync).</li>
-        <li>If you accidentally marked a president as defeated, you can go to the "Victories" tab and click the "Revive" button next to that president. This will put them back in the "Challengers" tab.</li>
-        <li>Each president has a favorite drink; however, as some drinks are difficult to find (e.g. Madeira and Tokay wine). Just do your best. If you can't find something on this list, drink the next closest thing you can and move on. Despite the title of the game, this is supposed to be more fun than challenging!</li>
-        <li>For sober presidents, you can either drink the listed non-alcoholic drink or the alternative drink listed.</li>
+        <li>Create an account. Then create or join a team. <i>Note: User and team names and passwords are <b>case sensitive</b>.</i></li>
+        <li>There are no limits on team size; however, team size will affect how many drinks each individual will need to have, so choose responsibly. Also, it's okay to add members to a team after the game has started.</li>
+        <li>There are 44 drinks in the challenge. At the start of the game, you can find all 44 drinks listed on the Home page, in the "Challengers" tab. To complete the game, your team must collectively consume all 44 beverages.</li>
+        <li>There's no limit to how few or how many drinks one teammate can take for the team &mdash; dividing drinks is up to your team to decide. That said, please look out for your teammates and drink responsibly.</li>
       </ol>
       <div className="rules-bottom-links">
         <Link to="/rules" className="rules-nav-bottom"><button>&lt; Back</button></Link>
