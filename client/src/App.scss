@@ -218,10 +218,18 @@ input.submit-button {
   margin: 20px;
 }
 
-#rules img,
-#welcome img {
+#rules img {
   max-width: 100%;
+}
 
+#welcome-image {
+  min-height: 150px;
+  height: 23vh;
+  background-image: url("https://res.cloudinary.com/briandanger/image/upload/v1580784297/Screen_Shot_2020-02-03_at_5.23.00_PM_cuiy6z.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+  position: relative;
 }
 
 #team-show-full,
@@ -251,6 +259,19 @@ input.submit-button {
   border: 1px solid white;
   border-radius: 5px;
   font-weight: bold;
+}
+
+#welcome-image i {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  font-size: .6em;
+  color: white;
+  z-index: 1;
+}
+
+#welcome i a {
+  color: white;
 }
 
 #team-show {

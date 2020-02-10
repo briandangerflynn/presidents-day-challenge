@@ -228,6 +228,7 @@ class App extends React.Component {
 
   joinTeam = async (formData) => {
     const response = await api.put('/teams/join', { team: formData })
+    console.log(response)
     const currentTeam = response.data
     this.setState({
       currentTeam
