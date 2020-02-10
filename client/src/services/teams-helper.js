@@ -20,19 +20,6 @@ export const makeTeam = async data => {
   }
 }
 
-try {
-  const response = await api.post('/teams', { team: formData })
-  const currentTeam = response.data
-  this.setState({
-    currentTeam,
-    errorMessage: ""
-  })
-  this.getTeamPresidents()
-  this.getCurrentTeamMembers()
-} catch (error) {
-
-}
-
 export const getDefeatedPresident = async (teamId, presidentId, data) => {
   try {
     const response = await api.put(`/teams/${teamId}/presidents/${presidentId}/defeat`, data)
