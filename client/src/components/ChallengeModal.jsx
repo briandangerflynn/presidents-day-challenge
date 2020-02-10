@@ -14,7 +14,8 @@ export default function ChallengeModal(props) {
     name,
     image_url,
     id,
-    description
+    description,
+    alt_two
   } = currentPresident
 
   let cocktailInstructions = []
@@ -22,6 +23,8 @@ export default function ChallengeModal(props) {
 
   if (drink_type === "cocktail") {
     cocktailInstructions = specific_drink.split(";")
+  } else if (drink_type === "sober") {
+    cocktailInstructions = alt_two.split(";")
   }
 
   return (
@@ -37,6 +40,19 @@ export default function ChallengeModal(props) {
             <p className="cocktail-instruction">{instruction}</p>
           ))
           : <p>{specific_drink}</p>
+      }
+      {
+        drink_type === "sober" ?
+          <div>
+            <hr />
+            <p>Feel like having a drink anyway? Here's a themed cocktail:</p>
+          </div> : null
+      }
+      {
+        drink_type === "sober" ?
+          cocktailInstructions.map(instruction => (
+            <p className="cocktail-instruction">{instruction}</p>
+          )) : null
       }
       <button className="drink-button" onClick={() => handleDefeat(id)}>Drink</button>
     </div >
