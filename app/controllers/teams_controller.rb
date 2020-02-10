@@ -21,7 +21,7 @@ class TeamsController < ApplicationController
         end
       end
     else
-      render json: { error: 'unauthorized' }, status: :unauthorized
+      render json: { error: 'invalid team credentials' }
     end
   end
 
