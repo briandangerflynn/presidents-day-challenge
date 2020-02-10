@@ -5,7 +5,7 @@ class User < ApplicationRecord
   has_and_belongs_to_many :teams
   has_many :owned_teams, class_name: 'Team', foreign_key: 'creator_id'
 
-  validates :email, presence: true
+  validates :email, presence: true, uniqueness: true
 
   def to_token_payload
     {

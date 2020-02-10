@@ -17,7 +17,7 @@ import TeamCreate from './components/TeamCreate';
 import Welcome from './components/Welcome';
 import WinModal from './components/WinModal';
 
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import { login, register, verifyToken, removeToken } from './services/auth';
 import { api } from './services/api-helper';
 import { ActionCableConsumer } from 'react-actioncable-provider';
@@ -37,7 +37,8 @@ class App extends React.Component {
     win: false,
     modal: false,
     challengeSpecifics: false,
-    currentPresident: null
+    currentPresident: null,
+    errorMessage: ""
   }
 
   async componentDidMount() {
@@ -228,15 +229,23 @@ class App extends React.Component {
   // ================================
 
   joinTeam = async (formData) => {
-    const response = await api.put('/teams/join', { team: formData })
-    console.log(response)
-    const currentTeam = response.data
-    this.setState({
-      currentTeam
-    })
+    try {
+      const response = await api.put('/teams/join', { team: formData })
+      if (response.data.error === "invalid team credentials") {
+        throw response.data.error
+      }
+      const currentTeam = response.data
+      this.setState({
+        currentTeam
+      })
+      this.getTeamPresidents()
+      this.getCurrentTeamMembers()
 
-    this.getTeamPresidents()
-    this.getCurrentTeamMembers()
+    } catch (error) {
+      this.setState({
+        errorMessage: error
+      })
+    }
   }
 
   createTeam = async (formData) => {
@@ -320,7 +329,8 @@ class App extends React.Component {
       win,
       modal,
       challengeSpecifics,
-      currentPresident
+      currentPresident,
+      errorMessage
     } = this.state;
 
     const challengeModal = !win && challengeSpecifics && modal ?
@@ -338,7 +348,6 @@ class App extends React.Component {
       <div id="screen"
         onClick={this.handleCloseModal}></div>
       : null;
-
 
     return (
       <>
@@ -376,7 +385,8 @@ class App extends React.Component {
           <Route path="/join-team" render={() => (
             <TeamJoin
               joinTeam={this.joinTeam}
-              currentTeam={currentTeam} />
+              currentTeam={currentTeam}
+              errorMessage={errorMessage} />
           )} />
 
 

@@ -16,12 +16,12 @@ class UserTokenController < Knock::AuthTokenController
       if entity_class.respond_to? :from_token_request
         entity_class.from_token_request request
       else
-        entity_class.find_by username: auth_params[:username]
+        entity_class.find_by email: auth_params[:email]
       end
   end
 
   def auth_params
-    params.require(:auth).permit :username, :password
+    params.require(:auth).permit :email, :password
   end
 
 end
