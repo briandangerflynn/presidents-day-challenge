@@ -17,6 +17,9 @@ export default class Signup extends React.Component {
   }
 
   render() {
+    const { errorMessage } = this.props
+    const error = errorMessage ? <p className="error-message">{errorMessage}</p> : null;
+
     if (this.props.currentUser && this.props.currentTeam) {
       return <Redirect to='/challenge' />
     } else if (this.props.currentUser) {
@@ -27,6 +30,7 @@ export default class Signup extends React.Component {
       <div className="form">
         <h2>Create Account</h2>
         <p><small>Got an account? <Link to="/login" className="underline red">Sign In</Link></small></p>
+        {error}
         <form onSubmit={(e) => {
           e.preventDefault();
           this.props.handleRegister(this.state);

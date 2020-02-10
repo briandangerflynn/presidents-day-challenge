@@ -20,14 +20,15 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-    if @user.save!
+    if @user.save
       @user = User.select(:id, :username, :email, :created_at, :updated_at).find @user.id
       @token = Knock::AuthToken.new payload: { sub: @user.id }
       @teams = @user.teams.order(created_at: :desc)
 
       render json: {user: @user, token: @token.token, teams: @teams }, status: :created
     else
-      render json: @user.errors, status: :unprocessable_entity
+      @user.errors
+      render json: {error: @user.errors}, status: :unprocessable_entity
     end
   end
 

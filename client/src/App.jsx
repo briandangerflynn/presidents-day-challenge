@@ -182,23 +182,46 @@ class App extends React.Component {
   // ================================
 
   handleLogin = async (loginData) => {
-    const { user, teams } = await login(loginData);
-    this.setState({
-      currentUser: user,
-      teams,
-      currentTeam: teams[0]
-    });
-    this.getTeamPresidents()
-    this.getCurrentTeamMembers()
+    try {
+      const { user, teams } = await login(loginData);
+      this.setState({
+        currentUser: user,
+        teams,
+        currentTeam: teams[0],
+        errorMessage: ""
+      });
+      this.getTeamPresidents()
+      this.getCurrentTeamMembers()
+    } catch (error) {
+      const errorMessage = "Incorrect email or password. Please try again."
+      this.setState({
+        errorMessage
+      })
+    }
   }
 
   handleRegister = async (registerData) => {
-    const { user, teams } = await register(registerData);
-    this.setState({
-      currentUser: user,
-      teams,
-      currentTeam: teams[0]
-    });
+    try {
+      const { user, teams } = await register(registerData);
+      this.setState({
+        currentUser: user,
+        teams,
+        currentTeam: teams[0],
+        errorMessage: ""
+      });
+    } catch (error) {
+      const errors = []
+      if (error.response.data.error.email) {
+        errors.push(`Email ${error.response.data.error.email}`)
+      }
+      if (error.response.data.error.password) {
+        errors.push(`Password ${error.response.data.error.password}`)
+      }
+      const errorMessage = errors[0]
+      this.setState({
+        errorMessage
+      })
+    }
   }
 
   verifyUser = async () => {
@@ -231,32 +254,45 @@ class App extends React.Component {
   joinTeam = async (formData) => {
     try {
       const response = await api.put('/teams/join', { team: formData })
-      if (response.data.error === "invalid team credentials") {
-        throw response.data.error
-      }
       const currentTeam = response.data
       this.setState({
-        currentTeam
+        currentTeam,
+        errorMessage: ""
       })
       this.getTeamPresidents()
       this.getCurrentTeamMembers()
 
     } catch (error) {
+      const errorMessage = error.response.data.error
       this.setState({
-        errorMessage: error
+        errorMessage
       })
     }
   }
 
   createTeam = async (formData) => {
-    const response = await api.post('/teams', { team: formData })
-    const currentTeam = response.data
-    this.setState({
-      currentTeam
-    })
-
-    this.getTeamPresidents()
-    this.getCurrentTeamMembers()
+    try {
+      const response = await api.post('/teams', { team: formData })
+      const currentTeam = response.data
+      this.setState({
+        currentTeam,
+        errorMessage: ""
+      })
+      this.getTeamPresidents()
+      this.getCurrentTeamMembers()
+    } catch (error) {
+      const errors = []
+      if (error.response.data.error.teamname) {
+        errors.push(`Teamname ${error.response.data.error.teamname}`)
+      }
+      if (error.response.data.error.password) {
+        errors.push(`Password ${error.response.data.error.password}`)
+      }
+      const errorMessage = errors[0]
+      this.setState({
+        errorMessage
+      })
+    }
   }
 
   // ================================
@@ -365,6 +401,7 @@ class App extends React.Component {
               handleLogin={this.handleLogin}
               currentUser={currentUser}
               currentTeam={currentTeam}
+              errorMessage={errorMessage}
             />
           )} />
           <Route path="/register" render={() => (
@@ -372,6 +409,7 @@ class App extends React.Component {
               handleRegister={this.handleRegister}
               currentTeam={currentTeam}
               currentUser={currentUser}
+              errorMessage={errorMessage}
             />
           )} />
 
@@ -379,7 +417,8 @@ class App extends React.Component {
             <TeamCreate
               createTeam={this.createTeam}
               currentTeam={currentTeam}
-              currentUser={currentUser} />
+              currentUser={currentUser}
+              errorMessage={errorMessage} />
           )} />
 
           <Route path="/join-team" render={() => (
