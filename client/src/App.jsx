@@ -250,7 +250,6 @@ class App extends React.Component {
   createTeam = async (formData) => {
     const currentTeam = await makeTeam(formData);
     this.setState({ currentTeam })
-
     this.getTeamPresidents()
     this.getCurrentTeamMembers()
   }
