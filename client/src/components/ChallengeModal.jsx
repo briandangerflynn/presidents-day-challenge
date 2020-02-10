@@ -13,7 +13,8 @@ export default function ChallengeModal(props) {
     specific_drink,
     name,
     image_url,
-    id
+    id,
+    description
   } = currentPresident
 
   let cocktailInstructions = []
@@ -27,7 +28,8 @@ export default function ChallengeModal(props) {
     <div className="modal challenge-modal">
       <p className="modal-exit" onClick={handleCloseModal}>X</p>
       <h2>{name}</h2>
-      <img src={image_url} />
+      <img src={image_url} /><br /><br />
+      <small>{description}</small>
       <h3>Favorite Drink:</h3>
       {
         drink_type === "cocktail" ?

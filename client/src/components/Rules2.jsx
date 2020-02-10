@@ -14,8 +14,8 @@ export default function Rules() {
         <li>To complete the game, your team must collectively consume all 44 beverages.</li>
         <li>When someone on your team has consumed a president's drink, click on the "drank" button next to that president to mark them as defeated. The app will update the list for everyone on your team (it may take up to 30 seconds to sync).</li>
         <li>If you accidentally marked a president as defeated, you can go to the "Victories" tab and click the "Revive" button next to that president. This will put them back in the "Challengers" tab.</li>
-        <li>Each president has a favorite drink; however, as some drinks are difficult to find (e.g. madeira), alternative drinks are listed that you can use as substitutes.</li>
-        <li>For sober presidents, you can either drink water or one of the alternative drinks listed.</li>
+        <li>Each president has a favorite drink; however, as some drinks are difficult to find (e.g. Madeira and Tokay wine). Just do your best. If you can't find something on this list, drink the next closest thing you can and move on. Despite the title of the game, this is supposed to be more fun than challenging!</li>
+        <li>For sober presidents, you can either drink the listed non-alcoholic drink or the alternative drink listed.</li>
       </ol>
       <div className="rules-bottom-links">
         <Link to="/rules" className="rules-nav-bottom"><button>&lt; Back</button></Link>
