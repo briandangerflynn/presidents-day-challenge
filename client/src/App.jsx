@@ -20,9 +20,8 @@ import WinModal from './components/WinModal';
 import { Route, Redirect } from 'react-router-dom';
 import { login, register, verifyToken, removeToken } from './services/auth';
 import { api } from './services/api-helper';
+import { getDefeatedPresident, getRevivedPresident, makeTeam } from './services/teams-helper';
 import { ActionCableConsumer } from 'react-actioncable-provider';
-
-
 
 class App extends React.Component {
   state = {
@@ -108,8 +107,9 @@ class App extends React.Component {
       team: currentTeam,
       president_id: id
     }
-    const response = await api.put(`/teams/${currentTeam.id}/presidents/${id}/defeat`, formData)
-    const teamPresident = response.data[0]
+
+    const teamPresident = await getDefeatedPresident(currentTeam.id, id, formData)
+
     const challengers = []
     const victories = []
 
@@ -150,8 +150,7 @@ class App extends React.Component {
       team: currentTeam,
       president_id: id
     }
-    const response = await api.put(`/teams/${currentTeam.id}/presidents/${id}/revive`, formData)
-    const teamPresident = response.data[0]
+    const teamPresident = await getRevivedPresident(currentTeam.id, id, formData);
     const challengers = []
     const victories = []
 
@@ -249,11 +248,8 @@ class App extends React.Component {
   }
 
   createTeam = async (formData) => {
-    const response = await api.post('/teams', { team: formData })
-    const currentTeam = response.data
-    this.setState({
-      currentTeam
-    })
+    const currentTeam = await makeTeam(formData);
+    this.setState({ currentTeam })
 
     this.getTeamPresidents()
     this.getCurrentTeamMembers()
