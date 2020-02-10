@@ -8,8 +8,8 @@ class TeamsController < ApplicationController
 
   # JOIN /teams/join
   def join
-    begin
-      @team = Team.find_by(teamname: team_params["teamname"])
+    @team = Team.find_by(teamname: team_params["teamname"])
+    if @team
       if @team.authenticate(team_params[:password])
         if @team.users.include? current_user
           render json: {error: "You're already on this team"}
@@ -22,10 +22,10 @@ class TeamsController < ApplicationController
           end
         end
       else
-        render json: { error: 'invalid team credentials' }
+        render json: { error: 'Invalid password.'}, status: 401
       end
-    rescue => exception
-      render json: { error: 'invalid team credentials' }
+    else
+      render json: { error: 'Team not found.'}, status: 404
     end
   end
 
@@ -40,7 +40,7 @@ class TeamsController < ApplicationController
       end
       render json: @team, status: :created, location: @team
     else
-      render json: @team.errors, status: :unprocessable_entity
+      render json: {error: @team.errors}, status: :unprocessable_entity
     end
   end
 

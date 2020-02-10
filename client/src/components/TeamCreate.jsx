@@ -26,6 +26,9 @@ export default class TeamCreate extends React.Component {
   }
 
   render() {
+    const { errorMessage } = this.props
+    const error = errorMessage ? <p className="error-message">{errorMessage}</p> : null;
+
     if (this.props.currentTeam) {
       return <Redirect to='/challenge' />
     }
@@ -34,6 +37,7 @@ export default class TeamCreate extends React.Component {
       <div className="form">
         <h2>Create Team</h2>
         <p><small>Already got a team? <Link to="/join-team" className="underline red">Join here!</Link></small></p>
+        {error}
         <form onSubmit={this.handleCreateTeam}>
           <input
             type="text"

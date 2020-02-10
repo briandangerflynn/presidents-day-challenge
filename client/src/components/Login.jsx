@@ -24,10 +24,14 @@ export default class Login extends React.Component {
       return <Redirect to='/join-team' />
     }
 
+    const { errorMessage } = this.props
+    const error = errorMessage ? <p className="error-message">{errorMessage}</p> : null;
+
     return (
       <div className="form">
         <h2>Login</h2>
         <p><small>New here? <Link to="/register" className="underline red">Create an account</Link></small></p>
+        {error}
         <form onSubmit={(e) => {
           e.preventDefault();
           this.props.handleLogin(this.state);

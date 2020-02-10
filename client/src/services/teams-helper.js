@@ -6,8 +6,31 @@ export const makeTeam = async data => {
     const currentTeam = response.data
     return currentTeam;
   } catch (error) {
-    console.log(error)
+    const errors = []
+    if (error.response.data.error.teamname) {
+      errors.push(`Teamname ${error.response.data.error.teamname}`)
+    }
+    if (error.response.data.error.password) {
+      errors.push(`Password ${error.response.data.error.password}`)
+    }
+    const errorMessage = errors[0]
+    this.setState({
+      errorMessage
+    })
   }
+}
+
+try {
+  const response = await api.post('/teams', { team: formData })
+  const currentTeam = response.data
+  this.setState({
+    currentTeam,
+    errorMessage: ""
+  })
+  this.getTeamPresidents()
+  this.getCurrentTeamMembers()
+} catch (error) {
+
 }
 
 export const getDefeatedPresident = async (teamId, presidentId, data) => {
