@@ -60,8 +60,6 @@ export default class ChallengeMain extends React.Component {
           </div>
         </div>
     }
-
-
     // end of garbage code
 
     return (

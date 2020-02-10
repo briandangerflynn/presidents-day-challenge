@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { api } from '../services/api-helper';
 
-export default class Signup extends React.Component {
+export default class TeamCreate extends React.Component {
   state = {
     teamname: "",
     password: ""

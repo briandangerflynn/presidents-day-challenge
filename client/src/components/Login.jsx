@@ -4,7 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 
 export default class Login extends React.Component {
   state = {
-    username: "",
+    email: "",
     password: ""
   }
 
@@ -16,7 +16,7 @@ export default class Login extends React.Component {
   }
 
   render() {
-    const { username, password } = this.state;
+    const { email, password } = this.state;
 
     if (this.props.currentUser && this.props.currentTeam) {
       return <Redirect to='/challenge' />
@@ -34,9 +34,9 @@ export default class Login extends React.Component {
         }}>
           <input
             type="text"
-            placeholder="Name"
-            name="username"
-            value={username}
+            placeholder="Email"
+            name="email"
+            value={email}
             required
             onChange={this.handleChange}
           />
