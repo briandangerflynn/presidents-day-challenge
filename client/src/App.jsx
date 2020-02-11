@@ -493,11 +493,10 @@ class App extends React.Component {
             </ActionCableConsumer>
           )
           } />
-
           < Route path="/team" render={() => (
             <Team
-              teamname={currentTeam.teamname}
-              creatorId={currentTeam.creator_id}
+              teamname={currentTeam ? currentTeam.teamname : ''}
+              creatorId={currentTeam ? currentTeam.creator_id : ''}
               userId={currentUser.user_id}
               currentTeamMembers={currentTeamMembers}
               teamPresidents={teamPresidents}
