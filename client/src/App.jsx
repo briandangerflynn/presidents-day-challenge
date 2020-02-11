@@ -407,9 +407,11 @@ class App extends React.Component {
         onClick={this.handleCloseModal}></div>
       : null;
 
-    const presidentsDefeated = teamPresidents.filter(president => (
-      president.user_id === currentUser.id
-    ))
+    const presidentsDefeated = (teamPresidents = []) => {
+      teamPresidents.filter(president => (
+        president.user_id === currentUser.id
+      ))
+    }
 
     return (
       <>
