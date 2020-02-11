@@ -7,8 +7,6 @@ export default function Welcome(props) {
 
   if (currentUser && currentTeam) {
     return <Redirect to='/challenge' />
-  } else if (currentUser) {
-    return <Redirect to='/join-team' />
   }
 
   return (
