@@ -392,20 +392,19 @@ footer {
   background-color: white;
   z-index: 2;
   text-align: center;
-  -webkit-overflow-scrolling: touch
 }
 
 .modal::-webkit-scrollbar {
   -webkit-appearance: none;
   width: 7px;
+  height: 7px;
+  -webkit-overflow-scrolling: auto;
 }
 .modal::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background-color: rgba(0,0,0,.2);
-  // -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+  background-color: rgba(0,0,0,.3);
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.3);
 }
-
-
 
 .modal img {
   width: 90%;
