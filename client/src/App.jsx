@@ -386,6 +386,15 @@ class App extends React.Component {
       president.user_id === currentUser.id
     ))
 
+    if (!currentUser) {
+      return (
+        <div>
+          <div className="loader"></div>
+          <p>Loading...</p>
+        </div>
+      )
+    }
+
     return (
       <>
         {screen}
@@ -467,8 +476,8 @@ class App extends React.Component {
 
           < Route path="/users/:id" render={() => (
             <Profile
-              currentUser={currentUser}
-              currentTeam={currentTeam}
+              username={currentUser.username}
+              teamname={currentTeam.teamname}
               presidentsDefeated={presidentsDefeated}
             />
           )} />
