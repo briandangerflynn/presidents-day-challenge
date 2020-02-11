@@ -25,6 +25,7 @@ export default class Signup extends React.Component {
     } else if (this.props.currentUser) {
       return <Redirect to='/join-team' />
     }
+    console.log(window.location.pathname)
 
     return (
       <div className="form">

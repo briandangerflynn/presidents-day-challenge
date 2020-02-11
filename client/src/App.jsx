@@ -37,7 +37,10 @@ class App extends React.Component {
     modal: false,
     challengeSpecifics: false,
     currentPresident: null,
-    errorMessage: ""
+    registerErrorMessage: "",
+    loginErrorMessage: "",
+    joinTeamErrorMessage: "",
+    createTeamErrorMessage: ""
   }
 
   async componentDidMount() {
@@ -192,9 +195,9 @@ class App extends React.Component {
       this.getTeamPresidents()
       this.getCurrentTeamMembers()
     } catch (error) {
-      const errorMessage = "Incorrect email or password. Please try again."
+      const loginErrorMessage = "Incorrect email or password. Please try again."
       this.setState({
-        errorMessage
+        loginErrorMessage
       })
     }
   }
@@ -216,9 +219,9 @@ class App extends React.Component {
       if (error.response.data.error.password) {
         errors.push(`Password ${error.response.data.error.password}`)
       }
-      const errorMessage = errors[0]
+      const registerErrorMessage = errors[0]
       this.setState({
-        errorMessage
+        registerErrorMessage
       })
     }
   }
@@ -262,9 +265,9 @@ class App extends React.Component {
       this.getCurrentTeamMembers()
 
     } catch (error) {
-      const errorMessage = error.response.data.error
+      const joinTeamErrorMessage = error.response.data.error
       this.setState({
-        errorMessage
+        joinTeamErrorMessage
       })
     }
   }
@@ -286,9 +289,9 @@ class App extends React.Component {
       if (error.response.data.error.password) {
         errors.push(`Password ${error.response.data.error.password}`)
       }
-      const errorMessage = errors[0]
+      const createTeamErrorMessage = errors[0]
       this.setState({
-        errorMessage
+        createTeamErrorMessage
       })
     }
   }
@@ -364,7 +367,10 @@ class App extends React.Component {
       modal,
       challengeSpecifics,
       currentPresident,
-      errorMessage
+      registerErrorMessage,
+      loginErrorMessage,
+      joinTeamErrorMessage,
+      createTeamErrorMessage
     } = this.state;
 
     const challengeModal = !win && challengeSpecifics && modal ?
@@ -399,7 +405,7 @@ class App extends React.Component {
               handleLogin={this.handleLogin}
               currentUser={currentUser}
               currentTeam={currentTeam}
-              errorMessage={errorMessage}
+              errorMessage={loginErrorMessage}
             />
           )} />
           <Route path="/register" render={() => (
@@ -407,7 +413,7 @@ class App extends React.Component {
               handleRegister={this.handleRegister}
               currentTeam={currentTeam}
               currentUser={currentUser}
-              errorMessage={errorMessage}
+              errorMessage={registerErrorMessage}
             />
           )} />
 
@@ -416,14 +422,14 @@ class App extends React.Component {
               createTeam={this.createTeam}
               currentTeam={currentTeam}
               currentUser={currentUser}
-              errorMessage={errorMessage} />
+              errorMessage={createTeamErrorMessage} />
           )} />
 
           <Route path="/join-team" render={() => (
             <TeamJoin
               joinTeam={this.joinTeam}
               currentTeam={currentTeam}
-              errorMessage={errorMessage} />
+              errorMessage={joinTeamErrorMessage} />
           )} />
 
 

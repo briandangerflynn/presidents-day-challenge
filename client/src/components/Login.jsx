@@ -27,6 +27,8 @@ export default class Login extends React.Component {
     const { errorMessage } = this.props
     const error = errorMessage ? <p className="error-message">{errorMessage}</p> : null;
 
+    console.log(window.location.pathname)
+
     return (
       <div className="form">
         <h2>Login</h2>
