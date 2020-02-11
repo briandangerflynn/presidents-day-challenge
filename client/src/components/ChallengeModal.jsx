@@ -20,7 +20,6 @@ export default function ChallengeModal(props) {
 
   let cocktailInstructions = []
 
-
   if (drink_type === "cocktail") {
     cocktailInstructions = specific_drink.split(";")
   } else if (drink_type === "sober") {

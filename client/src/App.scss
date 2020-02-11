@@ -349,6 +349,16 @@ footer {
   text-align: center;
 }
 
+.modal::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+.modal::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: rgba(0,0,0,.2);
+  // -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
 .modal img {
   width: 90%;
   object-fit: cover;
