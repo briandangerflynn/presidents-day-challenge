@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom';
+import { motion } from 'framer-motion'
 
 export default function Header(props) {
   return (
@@ -33,7 +34,7 @@ export default function Header(props) {
           </>
         }
       </nav>
-      <h1 id="title">President's<br /> Day <br />Challenge</h1>
+      <motion.h1 id="title" animate={{ opacity: 1, y: 0 }} initial={{ opacity: 0, y: -200 }} transition={{ delay: 0.8 }}>President's<br /> Day <br />Challenge</motion.h1>
     </header>
   )
 }
