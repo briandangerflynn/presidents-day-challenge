@@ -65,6 +65,7 @@ export default class Signup extends React.Component {
             required
             onChange={this.handleChange}
           />
+          <label><input type="checkbox" value="" required />I am above the legal drinking age</label>
           <input type="submit" className="submit-button" value="Create" />
         </form>
       </div>
