@@ -282,14 +282,7 @@ class App extends React.Component {
       this.getTeamPresidents()
       this.getCurrentTeamMembers()
     } catch (error) {
-      const errors = []
-      if (error.response.data.error.teamname) {
-        errors.push(`Teamname ${error.response.data.error.teamname}`)
-      }
-      if (error.response.data.error.password) {
-        errors.push(`Password ${error.response.data.error.password}`)
-      }
-      const createTeamErrorMessage = errors[0]
+      const createTeamErrorMessage = error
       this.setState({
         createTeamErrorMessage
       })

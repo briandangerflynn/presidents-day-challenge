@@ -14,9 +14,7 @@ export const makeTeam = async data => {
       errors.push(`Password ${error.response.data.error.password}`)
     }
     const errorMessage = errors[0]
-    this.setState({
-      errorMessage
-    })
+    throw errorMessage
   }
 }
 
