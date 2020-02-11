@@ -493,7 +493,10 @@ class App extends React.Component {
           )} />
 
           < Route exact path="/" render={() => (
-            <Welcome currentUser={currentUser} />
+            <Welcome
+              currentUser={currentUser}
+              currentTeam={currentTeam}
+            />
           )} />
         </main>
         <footer><small>&copy; 2020 &mdash; Team Dinos</small></footer>

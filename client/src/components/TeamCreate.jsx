@@ -54,7 +54,7 @@ export default class TeamCreate extends React.Component {
             required
             onChange={this.handleChange}
           />
-          <input type="submit" className="submit-button" value="Create" />
+          <input type="submit" className="submit-button" value="Create Team" />
         </form>
       </div>
     )

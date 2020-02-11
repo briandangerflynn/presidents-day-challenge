@@ -20,7 +20,6 @@ export default class ChallengeMain extends React.Component {
       victories,
       challengeView,
       handleViewClick,
-      handleDefeat,
       handleRevive,
       handleChallengeClick
     } = this.props

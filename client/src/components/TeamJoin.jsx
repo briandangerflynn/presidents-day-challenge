@@ -9,8 +9,6 @@ export default class Login extends React.Component {
     password: ""
   }
 
-
-
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({
@@ -59,7 +57,7 @@ export default class Login extends React.Component {
           <input
             type="submit"
             className="submit-button"
-            value="Join"
+            value="Join Team"
           />
         </form>
       </div>

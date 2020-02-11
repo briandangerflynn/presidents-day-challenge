@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, NavLink } from 'react-router-dom';
 
 export default function Header(props) {
+  console.log(props)
   return (
     <header>
       <nav>
@@ -15,7 +16,15 @@ export default function Header(props) {
             <Link to='/' onClick={props.handleLogout}>Logout</Link>
           </>
         }
-        {props.currentUser === null &&
+        {props.currentUser && !props.currentTeam &&
+          <>
+            <NavLink activeStyle={{ fontWeight: "bold" }} exact to='/'>Home</NavLink>
+            <NavLink activeStyle={{ fontWeight: "bold" }} to='/rules'>How to Play</NavLink>
+            <NavLink activeStyle={{ fontWeight: "bold" }} to="/join-team">Join Team</NavLink>
+            <NavLink activeStyle={{ fontWeight: "bold" }} to="/create-team">Create Team</NavLink>
+          </>
+        }
+        {!props.currentUser &&
           <>
             <NavLink activeStyle={{ fontWeight: "bold" }} exact to='/'>Home</NavLink>
             <NavLink activeStyle={{ fontWeight: "bold" }} to='/rules'>How to Play</NavLink>
