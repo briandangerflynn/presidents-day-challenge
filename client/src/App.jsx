@@ -1,27 +1,39 @@
 import React from 'react';
 import './App.scss';
 
-import Header from './components/Header';
-import Signup from './components/Signup';
-import Login from './components/Login';
-import ChallengeMain from './components/ChallengeMain';
-import ChallengeModal from './components/ChallengeModal';
-import Team from './components/Team';
-import Profile from './components/Profile';
-import Rules1 from './components/Rules1';
-import Rules2 from './components/Rules2';
-import Rules3 from './components/Rules3';
-import Rules4 from './components/Rules4';
-import TeamJoin from './components/TeamJoin';
-import TeamCreate from './components/TeamCreate';
-import Welcome from './components/Welcome';
-import WinModal from './components/WinModal';
+import {
+  Header,
+  Signup,
+  Login,
+  ChallengeMain,
+  ChallengeModal,
+  Team,
+  Profile,
+  Rules1,
+  Rules2,
+  Rules3,
+  Rules4,
+  TeamJoin,
+  TeamCreate,
+  Welcome,
+  WinModal
+} from './components/index'
 
 import { Route, Redirect, withRouter } from 'react-router-dom';
-import { login, register, verifyToken, removeToken } from './services/auth';
 import { api } from './services/api-helper';
-import { makeTeam, removeTeam, removeUserFromTeam } from './services/teams-helper';
-import { getPresident, getDefeatedPresident, getRevivedPresident, } from './services/presidents-helper';
+import {
+  login,
+  register,
+  verifyToken,
+  removeToken,
+  makeTeam,
+  removeTeam,
+  removeUserFromTeam,
+  getTeamPresidents,
+  getTeamMembers, getPresident,
+  getDefeatedPresident,
+  getRevivedPresident
+} from './services/index'
 import { ActionCableConsumer } from 'react-actioncable-provider';
 
 class App extends React.Component {
@@ -55,8 +67,7 @@ class App extends React.Component {
       currentTeam = await this.verifyUser()
     }
     if (currentTeam) {
-      const response = await api.get(`/teams/${currentTeam.id}`)
-      const currentTeamMembers = response.data.users
+      const currentTeamMembers = await getTeamMembers(currentTeam.id)
       this.setState({
         currentTeam,
         currentTeamMembers
@@ -72,8 +83,7 @@ class App extends React.Component {
       currentTeam = await this.verifyUser()
     }
     if (currentTeam) {
-      const response = await api.get(`/teams/${currentTeam.id}`)
-      const teamPresidents = response.data.team_presidents
+      const teamPresidents = await getTeamPresidents(currentTeam.id);
       teamPresidents.sort(function (a, b) {
         return a.id - b.id;
       });

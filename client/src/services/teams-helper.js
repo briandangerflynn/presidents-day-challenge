@@ -1,5 +1,23 @@
 import { api } from './api-helper'
 
+export const getTeamMembers = async teamId => {
+  try {
+    const response = await api.get(`/teams/${teamId}`);
+    return response.data.users;
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const getTeamPresidents = async teamId => {
+  try {
+    const response = await api.get(`/teams/${teamId}`);
+    return response.data.team_presidents;
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export const makeTeam = async data => {
   try {
     const response = await api.post('/teams', { team: data })
