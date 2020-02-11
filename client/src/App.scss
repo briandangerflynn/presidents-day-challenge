@@ -74,6 +74,22 @@ input {
   margin-bottom: 15px;
 }
 
+input[type="checkbox"]{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 0 5px 0 0;
+  -webkit-appearance: checkbox;
+}
+
+label {
+  text-align: left;
+  display: block;
+  width: 250px;
+  margin: 10px auto;
+  height: 30px;
+}
+
 input.submit-button {
   background-color: #000033;
   color: white;
