@@ -493,8 +493,9 @@ class App extends React.Component {
 
           < Route path="/team" render={() => (
             <Team
-              currentTeam={currentTeam}
-              currentUser={currentUser}
+              teamname={currentTeam.teamname}
+              creatorId={currentTeam.creator_id}
+              userId={currentUser.user_id}
               currentTeamMembers={currentTeamMembers}
               teamPresidents={teamPresidents}
               leaveTeam={this.leaveTeam}
