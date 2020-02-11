@@ -1,11 +1,6 @@
 import React from 'react';
 
-export default function Profile(props) {
-  const { currentUser, currentTeam, teamPresidents } = props
-  const presidentsDefeated = teamPresidents.filter(president => (
-    president.user_id === currentUser.id
-  ))
-
+export default function Profile({ currentUser, currentTeam, presidentsDefeated }) {
   return (
     <div>
       {

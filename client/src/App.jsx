@@ -382,6 +382,10 @@ class App extends React.Component {
         onClick={this.handleCloseModal}></div>
       : null;
 
+    const presidentsDefeated = teamPresidents.filter(president => (
+      president.user_id === currentUser.id
+    ))
+
     return (
       <>
         {screen}
@@ -465,7 +469,7 @@ class App extends React.Component {
             <Profile
               currentUser={currentUser}
               currentTeam={currentTeam}
-              teamPresidents={teamPresidents}
+              presidentsDefeated={presidentsDefeated}
             />
           )} />
 
