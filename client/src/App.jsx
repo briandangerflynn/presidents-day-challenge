@@ -411,14 +411,14 @@ class App extends React.Component {
       president.user_id === currentUser.id
     ))
 
-    if (!currentUser) {
-      return (
-        <div>
-          <div className="loader"></div>
-          <p>Loading...</p>
-        </div>
-      )
-    }
+    // if (!currentUser) {
+    //   return (
+    //     <div>
+    //       <div className="loader"></div>
+    //       <p>Loading...</p>
+    //     </div>
+    //   )
+    // }
 
     return (
       <>
