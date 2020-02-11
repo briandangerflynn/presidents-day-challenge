@@ -233,6 +233,7 @@ input.submit-button {
 }
 
 #team-show-full,
+#leave-team-box,
 #rules,
 #welcome {
   background-color: white;
@@ -245,6 +246,19 @@ input.submit-button {
   border-radius: 5px;
 }
 
+#leave-team-box {
+  text-align: center;
+  margin-top: 10px;
+}
+
+#leave-team-box button {
+  padding: 10px 20px;
+  border: 1px solid white;
+  background-color: #de0421;
+  font-weight: bold;
+  color: white;
+  border-radius: 5px;
+}
 
 #welcome {
   text-align: center;
@@ -290,6 +304,8 @@ input.submit-button {
 #team-member-scores {
   flex-grow: 1;
 }
+
+
 
 footer {
   height: 60px;

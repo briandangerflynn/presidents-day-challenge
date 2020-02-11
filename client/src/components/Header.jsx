@@ -19,8 +19,9 @@ export default function Header(props) {
           <>
             <NavLink activeStyle={{ fontWeight: "bold" }} exact to='/'>Home</NavLink>
             <NavLink activeStyle={{ fontWeight: "bold" }} to='/rules'>How to Play</NavLink>
-            <NavLink activeStyle={{ fontWeight: "bold" }} to="/join-team">Join Team</NavLink>
-            <NavLink activeStyle={{ fontWeight: "bold" }} to="/create-team">Create Team</NavLink>
+            <NavLink activeStyle={{ fontWeight: "bold" }} to="/join-team">Join</NavLink>
+            <NavLink activeStyle={{ fontWeight: "bold" }} to="/create-team">Create</NavLink>
+            <Link to='/' onClick={props.handleLogout}>Logout</Link>
           </>
         }
         {!props.currentUser &&

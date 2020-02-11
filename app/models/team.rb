@@ -5,7 +5,7 @@ class Team < ApplicationRecord
 
   belongs_to :creator, class_name: 'User'
   has_and_belongs_to_many :users
-  has_many :team_presidents
+  has_many :team_presidents, dependent: :delete_all
   validates :teamname, uniqueness: true
   validates :password, length: { minimum: 5 }
 end

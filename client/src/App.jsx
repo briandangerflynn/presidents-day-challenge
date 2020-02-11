@@ -17,7 +17,7 @@ import TeamCreate from './components/TeamCreate';
 import Welcome from './components/Welcome';
 import WinModal from './components/WinModal';
 
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, withRouter } from 'react-router-dom';
 import { login, register, verifyToken, removeToken } from './services/auth';
 import { api } from './services/api-helper';
 import { getDefeatedPresident, getRevivedPresident, makeTeam } from './services/teams-helper';
@@ -57,6 +57,7 @@ class App extends React.Component {
       const response = await api.get(`/teams/${currentTeam.id}`)
       const currentTeamMembers = response.data.users
       this.setState({
+        currentTeam,
         currentTeamMembers
       })
     }
@@ -289,6 +290,30 @@ class App extends React.Component {
     }
   }
 
+  leaveTeam = async () => {
+    const { currentTeam } = this.state
+    if (window.confirm(`Leave ${currentTeam.teamname}?`)) {
+      const response = await api.get(`teams/${currentTeam.id}/leave`)
+      this.setState({
+        currentTeam: null,
+        currentTeamMembers: []
+      })
+      this.props.history.push('/join-team')
+    }
+  }
+
+  deleteTeam = async () => {
+    const { currentTeam } = this.state
+    if (window.confirm(`Delete ${currentTeam.teamname}? This will end this team and challenge for all team members.`)) {
+      const response = await api.delete(`teams/${currentTeam.id}`)
+      this.setState({
+        currentTeam: null,
+        currentTeamMembers: []
+      })
+      this.props.history.push('/join-team')
+    }
+  }
+
   // ================================
   // ===== ACTION CABLE RESPONSE ====
   // ================================
@@ -456,8 +481,11 @@ class App extends React.Component {
           < Route path="/team" render={() => (
             <Team
               currentTeam={currentTeam}
+              currentUser={currentUser}
               currentTeamMembers={currentTeamMembers}
               teamPresidents={teamPresidents}
+              leaveTeam={this.leaveTeam}
+              deleteTeam={this.deleteTeam}
             />
           )} />
 
@@ -498,4 +526,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default withRouter(App);

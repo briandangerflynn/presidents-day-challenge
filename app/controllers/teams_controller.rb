@@ -15,7 +15,7 @@ class TeamsController < ApplicationController
           render json: {error: "You're already on this team"}
         else
           @team.users << current_user
-          if @team.save
+          if !@team.save
             render json: @team
           else
             render json: @team.errors, status: :unprocessable_entity
@@ -26,6 +26,17 @@ class TeamsController < ApplicationController
       end
     else
       render json: { error: 'Team not found.'}, status: 404
+    end
+  end
+
+  #LEAVE /teams/:id/leave
+  def leave
+    @team = Team.find(params[:team_id])
+    @team.users.delete(current_user)
+    if !@team.save
+      render json: @team
+    else
+      render json: @team.errors, status: :unprocessable_entity
     end
   end
 
@@ -55,6 +66,9 @@ class TeamsController < ApplicationController
 
   # DELETE /teams/1
   def destroy
+    @team.users.each do |user| 
+      @team.users.delete(user)
+    end
     @team.destroy
   end
 
