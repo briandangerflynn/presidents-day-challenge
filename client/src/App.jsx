@@ -20,7 +20,8 @@ import WinModal from './components/WinModal';
 import { Route, Redirect, withRouter } from 'react-router-dom';
 import { login, register, verifyToken, removeToken } from './services/auth';
 import { api } from './services/api-helper';
-import { getDefeatedPresident, getRevivedPresident, makeTeam } from './services/teams-helper';
+import { makeTeam, removeTeam, removeUserFromTeam } from './services/teams-helper';
+import { getPresident, getDefeatedPresident, getRevivedPresident, } from './services/presidents-helper';
 import { ActionCableConsumer } from 'react-actioncable-provider';
 
 class App extends React.Component {
@@ -293,7 +294,7 @@ class App extends React.Component {
   leaveTeam = async () => {
     const { currentTeam } = this.state
     if (window.confirm(`Leave ${currentTeam.teamname}?`)) {
-      const response = await api.get(`teams/${currentTeam.id}/leave`)
+      await removeUserFromTeam(currentTeam.id)
       this.setState({
         currentTeam: null,
         currentTeamMembers: []
@@ -305,7 +306,7 @@ class App extends React.Component {
   deleteTeam = async () => {
     const { currentTeam } = this.state
     if (window.confirm(`Delete ${currentTeam.teamname}? This will end this team and challenge for all team members.`)) {
-      const response = await api.delete(`teams/${currentTeam.id}`)
+      await removeTeam(currentTeam.id);
       this.setState({
         currentTeam: null,
         currentTeamMembers: []
@@ -359,8 +360,7 @@ class App extends React.Component {
   }
 
   handleChallengeClick = async (id) => {
-    const response = await api.get(`/presidents/${id}`)
-    const currentPresident = response.data
+    const currentPresident = await getPresident(id);
     this.setState({
       challengeSpecifics: true,
       modal: true,
@@ -407,16 +407,20 @@ class App extends React.Component {
         onClick={this.handleCloseModal}></div>
       : null;
 
-    const presidentsDefeated = teamPresidents.filter(president => (
-      president.user_id === currentUser.id
-    ))
+    const presidentsDefeated = (teamPresidents = []) => {
+      teamPresidents.filter(president => (
+        president.user_id === currentUser.id
+      ))
+    }
 
     if (!currentUser) {
       return (
-        <div>
-          <div className="loader"></div>
-          <p>Loading...</p>
-        </div>
+        < Route exact path="/" render={() => (
+          <Welcome
+            currentUser={currentUser}
+            currentTeam={currentTeam}
+          />
+        )} />
       )
     }
 

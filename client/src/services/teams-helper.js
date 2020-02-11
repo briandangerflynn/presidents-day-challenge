@@ -18,21 +18,19 @@ export const makeTeam = async data => {
   }
 }
 
-export const getDefeatedPresident = async (teamId, presidentId, data) => {
+export const removeUserFromTeam = async teamId => {
   try {
-    const response = await api.put(`/teams/${teamId}/presidents/${presidentId}/defeat`, data)
-    const teamPresident = response.data[0];
-    return teamPresident;
+    const response = await api.get(`teams/${teamId}/leave`)
+    return response.data;
   } catch (error) {
     console.log(error)
   }
 }
 
-export const getRevivedPresident = async (teamId, presidentId, data) => {
+export const removeTeam = async teamId => {
   try {
-    const response = await api.put(`/teams/${teamId}/presidents/${presidentId}/revive`, data)
-    const teamPresident = response.data[0];
-    return teamPresident;
+    const response = await api.delete(`teams/${teamId}`)
+    return response.data;
   } catch (error) {
     console.log(error)
   }
