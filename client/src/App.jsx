@@ -536,7 +536,9 @@ class App extends React.Component {
             />
           )} />
         </main>
-        <footer><small>&copy; 2020 &mdash; Team Dinos</small></footer>
+        <footer>
+          <small>&copy; 2020 &mdash; team dinos. Contact us <a href="mailto:info@presidentsdaychallenge.com">here</a>.</small>
+        </footer>
       </>
     );
   }
