@@ -35,6 +35,7 @@ import {
   getRevivedPresident
 } from './services/index'
 import { ActionCableConsumer } from 'react-actioncable-provider';
+import { AnimatePresence } from 'framer-motion';
 
 class App extends React.Component {
   state = {
@@ -433,7 +434,10 @@ class App extends React.Component {
         />
         <main>
           {winModal}
-          {challengeModal}
+          <AnimatePresence>
+
+            {challengeModal}
+          </AnimatePresence>
           <Route path="/login" render={() => (
             <Login
               handleLogin={this.handleLogin}
