@@ -507,8 +507,9 @@ class App extends React.Component {
 
           < Route path="/users/:id" render={() => (
             <Profile
-              username={currentUser.username}
-              teamname={currentTeam.teamname}
+              username={currentUser ? currentUser.username : ''}
+              email={currentUser ? currentUser.email : ''}
+              teamname={currentTeam ? currentTeam.teamname : ''}
               presidentsDefeated={presidentsDefeated}
             />
           )} />

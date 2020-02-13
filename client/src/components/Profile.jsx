@@ -1,12 +1,18 @@
 import React from 'react';
 
-export default function Profile({ username, teamname, presidentsDefeated }) {
+export default function Profile({ username, email, teamname, presidentsDefeated }) {
   return (
     <div>
       <div id="user-show">
-        <div>
-          <h3>Username:</h3>
-          <p>{username}</p>
+        <div id="user-show-details">
+          <div>
+            <h3>Username:</h3>
+            <p>{username}</p>
+          </div>
+          <div>
+            <h3>Email:</h3>
+            <p>{email}</p>
+          </div>
         </div>
         <div>
           <h3>Current Team:</h3>

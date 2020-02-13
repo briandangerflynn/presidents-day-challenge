@@ -235,6 +235,15 @@ input.submit-button {
   margin-left: 5px;
 }
 
+#user-show-details {
+  display: flex;
+}
+
+#user-show-details div {
+  border: none;
+  width: 50%;
+}
+
 #rules ol {
   padding: 0;
 }
