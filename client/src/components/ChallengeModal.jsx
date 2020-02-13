@@ -41,7 +41,7 @@ export default function ChallengeModal(props) {
       <p className="modal-exit" onClick={handleCloseModal}>X</p>
       <h2>{name}</h2>
       <img src={image_url} /><br /><br />
-      <small>{description}</small>
+      <p>{description}</p>
       <h3>Favorite Drink:</h3>
       {
         drink_type === "cocktail" ?
