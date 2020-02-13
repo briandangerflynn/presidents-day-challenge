@@ -14,6 +14,7 @@ export default function Welcome({ currentUser, currentTeam }) {
           <a href="https://alexfine.com/#/washington-post/" target="_blank" rel="noopener noreferrer">Illustr. by Alex Fine</a>
         </i>
       </div>
+      <p><i>Drink Each President's Favorite Drink</i></p>
       <Link to="/rules">
         <button>How to Play</button>
       </Link>
