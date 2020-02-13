@@ -9,8 +9,6 @@ class UserTokenController < Knock::AuthTokenController
     render json: {user: @user, token: auth_token.token, teams: @teams }, status: :created
   end
 
-  private
-
   def entity
     @entity ||=
       if entity_class.respond_to? :from_token_request

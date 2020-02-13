@@ -9,6 +9,7 @@ import {
   ChallengeModal,
   Team,
   Profile,
+  ProfileEdit,
   Rules1,
   Rules2,
   Rules3,
@@ -364,7 +365,9 @@ class App extends React.Component {
     })
   }
 
-  // Modal Logic
+  // ================================
+  // ========= MODAL LOGIC ==========
+  // ================================
 
   handleCloseModal = () => {
     this.setState({ modal: false })
@@ -377,6 +380,16 @@ class App extends React.Component {
       modal: true,
       currentPresident: currentPresident
     })
+  }
+
+  // ================================
+  // ========== EDIT USER ===========
+  // ================================
+
+  handleEditProfile = async (formData) => {
+    const { id } = this.state.currentUser
+    const response = await api.patch(`users/${id}`, formData)
+    console.log(response)
   }
 
   // ================================
@@ -509,12 +522,22 @@ class App extends React.Component {
             />
           )} />
 
-          < Route path="/users/:id" render={() => (
+          < Route exact path="/users/:id" render={() => (
             <Profile
+              id={currentUser ? currentUser.id : ''}
               username={currentUser ? currentUser.username : ''}
               email={currentUser ? currentUser.email : ''}
               teamname={currentTeam ? currentTeam.teamname : ''}
               presidentsDefeated={presidentsDefeated}
+            />
+          )} />
+
+          < Route path="/users/:id/edit" render={() => (
+            <ProfileEdit
+              id={currentUser ? currentUser.id : ''}
+              username={currentUser ? currentUser.username : ''}
+              email={currentUser ? currentUser.email : ''}
+              handleEditProfile={this.handleEditProfile}
             />
           )} />
 

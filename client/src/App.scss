@@ -222,7 +222,7 @@ input.submit-button {
   max-width: 500px;
 }
 
-#user-show div {
+#user-show .user-show-box {
   border: 1px solid #f3f2f2;
   background-color: white;
   margin: 20px 0;
@@ -242,6 +242,21 @@ input.submit-button {
 #user-show-details div {
   border: none;
   width: 50%;
+}
+
+.user-show-box button {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 5px 20px;
+  border: 1px solid white;
+  background-color: #de0421;
+  font-weight: bold;
+  color: white;
+  border-radius: 5px;
+}
+
+.user-show-box button:hover {
+  cursor: pointer;
 }
 
 #rules ol {

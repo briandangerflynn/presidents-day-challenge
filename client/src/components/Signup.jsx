@@ -25,7 +25,6 @@ export default class Signup extends React.Component {
     } else if (this.props.currentUser) {
       return <Redirect to='/join-team' />
     }
-    console.log(window.location.pathname)
 
     return (
       <div className="form">
@@ -38,7 +37,7 @@ export default class Signup extends React.Component {
         }}>
           <input
             type="text"
-            placeholder="Name"
+            placeholder="Username"
             name="username"
             required
             onChange={this.handleChange}
