@@ -387,9 +387,15 @@ class App extends React.Component {
   // ================================
 
   handleEditProfile = async (formData) => {
-    const { id } = this.state.currentUser
-    const response = await api.patch(`users/${id}`, formData)
-    console.log(response)
+    const { currentUser } = this.state
+    const response = await api.patch(`users/${currentUser.id}`, formData)
+    const updatedUser = response.data
+    currentUser.username = updatedUser.username
+    currentUser.email = updatedUser.email
+    this.setState({
+      currentUser
+    })
+    this.props.history.push(`/users/${currentUser.id}`)
   }
 
   // ================================

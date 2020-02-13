@@ -35,8 +35,8 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   def update
     if @user.id == params[:id].to_i
-      byebug
-      @user.update!(username: params[:username], email: params[:email])
+      @user.update_attribute(:username, params[:username])
+      @user.update_attribute(:email, params[:email])
       render json: @user
     else
       render json: @user.errors, status: :unprocessable_entity
