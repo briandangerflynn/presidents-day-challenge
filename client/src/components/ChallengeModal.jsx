@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion'
 
 export default function ChallengeModal(props) {
   const {
@@ -27,7 +28,16 @@ export default function ChallengeModal(props) {
   }
 
   return (
-    <div className="modal challenge-modal">
+    <motion.div
+      className="modal challenge-modal"
+      initial={{ rotate: 180, scale: 0 }}
+      animate={{ rotate: 0, scale: 1 }}
+      exit={{ scale: 0, rotate: 180 }}
+      transition={{
+        type: "spring",
+        damping: 20
+      }}
+    >
       <p className="modal-exit" onClick={handleCloseModal}>X</p>
       <h2>{name}</h2>
       <img src={image_url} /><br /><br />
@@ -54,6 +64,6 @@ export default function ChallengeModal(props) {
           )) : null
       }
       <button className="drink-button" onClick={() => handleDefeat(id)}>Drink</button>
-    </div >
+    </motion.div >
   )
 }

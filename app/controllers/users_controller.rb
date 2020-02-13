@@ -35,6 +35,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   def update
     if @user.id == params[:id].to_i
+      byebug
       @user.update!(username: params[:username], email: params[:email])
       render json: @user
     else
