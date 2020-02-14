@@ -520,7 +520,7 @@ class App extends React.Component {
             <Team
               teamname={currentTeam ? currentTeam.teamname : ''}
               creatorId={currentTeam ? currentTeam.creator_id : ''}
-              userId={currentUser.user_id}
+              userId={currentUser ? currentUser.user_id : ''}
               currentTeamMembers={currentTeamMembers}
               teamPresidents={teamPresidents}
               leaveTeam={this.leaveTeam}
