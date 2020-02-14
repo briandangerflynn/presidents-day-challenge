@@ -11,9 +11,11 @@ export default function Welcome({ currentUser, currentTeam }) {
     <motion.div id="welcome" animate={{ opacity: 1, x: 0 }} initial={{ opacity: 0, x: '-50%' }} transition={{ delay: 0 }}>
       <div id="welcome-image">
         <i>
-          <a href="https://alexfine.com/#/washington-post/" target="_blank" rel="noopener noreferrer">Illustr. by Alex Fine</a>
+          <a href="https://corbinswets.artstation.com" target="_blank" rel="noopener noreferrer">Illustr. by Corbin Swets</a>
         </i>
       </div>
+      <br />
+      <hr />
       <p><i>Drink Each President's Favorite Drink</i></p>
       <Link to="/rules">
         <button>How to Play</button>

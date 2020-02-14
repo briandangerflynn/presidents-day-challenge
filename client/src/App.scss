@@ -276,9 +276,9 @@ input.submit-button {
 }
 
 #welcome-image {
-  min-height: 150px;
+  min-height: 170px;
   height: 23vh;
-  background-image: url('./presidents.png');
+  background-image: url('./pdc-logo.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top center;
@@ -331,14 +331,14 @@ input.submit-button {
 #welcome-image i {
   position: absolute;
   right: 5px;
-  bottom: 5px;
+  bottom: -15px;
   font-size: .6em;
   color: white;
   z-index: 1;
 }
 
 #welcome i a {
-  color: white;
+  color: black;
 }
 
 #team-show {
