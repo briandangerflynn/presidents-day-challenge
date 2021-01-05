@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "actioncable": "^5.2.4-1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "framer-motion": "^1.8.4",
     "node-sass": "^4.13.1",
     "react": "^16.8.6",
