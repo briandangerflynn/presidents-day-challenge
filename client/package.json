@@ -6,7 +6,7 @@
     "actioncable": "^5.2.4-1",
     "axios": "^0.19.2",
     "framer-motion": "^1.8.4",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "react": "^16.8.6",
     "react-actioncable-provider": "^2.0.0",
     "react-dom": "^16.8.6",
